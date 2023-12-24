@@ -6,7 +6,7 @@ import Projects from './components/projects/projects';
 export default function page() {
   return (
     <div className='flex flex-col md:flex-row w-full '>
-      <div className='w-full md:w-[360px] overflow-auto pb-20 h-[100svh] bg-black'>
+      <div className='w-full md:w-[360px] overflow-auto pb-20 h-[100svh] bg-black custom-scroll'>
         <Bio />
         <Projects />
 
