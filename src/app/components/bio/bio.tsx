@@ -3,7 +3,6 @@ import React from 'react';
 import LogoCSS from '../img/logo-css';
 import LogoFigma from '../img/logo-figma';
 import LogoFirebase from '../img/logo-firebase';
-import LogoGithub from '../img/logo-github';
 import LogoHTML from '../img/logo-html';
 import LogoJS from '../img/logo-js';
 import LogoMongo from '../img/logo-mongo';
@@ -76,7 +75,6 @@ export default function Bio() {
         </div>
         <p className='font-bold mt-4'>Extra</p>
         <div className='flex flex-wrap gap-1'>
-          <Pile icon={<LogoGithub />}>Github</Pile>
           <Pile icon={<LogoFigma />}>Figma</Pile>
           <Pile icon={<LogoPhotoshop />}>Photoshop</Pile>
           <Pile icon={<LogoVercel />}>Vercel</Pile>
