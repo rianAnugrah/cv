@@ -87,7 +87,13 @@ export default function Bio() {
   );
 }
 
-const Pile = ({ children, icon }) => {
+const Pile = ({
+  children,
+  icon,
+}: {
+  children: React.ReactNode;
+  icon: React.ReactNode;
+}) => {
   return (
     <div className='flex gap-1 items-center rounded-sm px-2 py-1 text-black bg-gray-200 text-xs'>
       <div className='w-5 h-5  object-fill flex items-center justify-center'>
@@ -98,7 +104,7 @@ const Pile = ({ children, icon }) => {
   );
 };
 
-const SosmedIcon = ({ children }) => {
+const SosmedIcon = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className='flex transition-all group duration-200 ease-out hover:px-3 items-center justify-center border border-gray-700 rounded-md cursor-pointer hover:bg-white p-2'>
       <div className='group-hover:-rotate-6 group-hover:scale-110 transition-all duration-300 ease-in-out'>
