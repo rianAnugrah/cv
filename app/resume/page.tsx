@@ -1,10 +1,11 @@
 import React from "react";
+import ContainerGlass from "@/app/(shared)/components/container-glass";
 
 export default function ResumePage() {
   return (
-    <div className="w-full h-screen px-28 gap-4 flex flex-col items-start justify-center">
+    <div className="w-full h-screen px-4 lg:px-28 gap-4 flex flex-col items-start justify-start lg:justify-center pt-4">
       <h1 className="text-4xl mb-4">My timeline</h1>
-      <div className="h-[calc(100dvh_-_160px)] overflow-auto backdrop-blur-sm bg-white/10 border-white/30 border rounded-xl shadow p-8">
+      <ContainerGlass>
         <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
         <li>
             <div className="timeline-middle">
@@ -149,7 +150,7 @@ export default function ResumePage() {
             </div>
           </li>
         </ul>
-      </div>
+      </ContainerGlass>
     </div>
   );
 }

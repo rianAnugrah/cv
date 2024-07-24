@@ -1,12 +1,13 @@
 import React from "react";
 import { RiNextjsLine } from "react-icons/ri";
 import { SlSettings } from "react-icons/sl";
+import ContainerGlass from "@/app/(shared)/components/container-glass";
 
 export default function AboutPage() {
   return (
-    <div className="w-full h-screen px-28 gap-4 flex flex-col items-start justify-center">
+    <div className="w-full h-screen px-4 lg:px-28 gap-4 flex flex-col items-start justify-start lg:justify-center pt-4">
       <h1 className="text-4xl mb-4">About Me</h1>
-      <div className="h-[calc(100dvh_-_160px)] flex flex-col gap-3 overflow-auto w-full backdrop-blur-sm bg-white/10 border-white/30 border rounded-xl shadow p-8">
+      <ContainerGlass>
         <div>
           Hi, I am Experienced Software Engineer with a proven track record of
           success in developing user-friendly and efficient web applications.
@@ -146,7 +147,7 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </div>
+      </ContainerGlass>
     </div>
   );
 }

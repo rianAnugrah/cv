@@ -16,7 +16,7 @@ const NavItem = ({
   return (
     <Link href={href} className="tooltip tooltip-right" data-tip={label}>
       <div
-        className={`hover:backdrop-blur-sm hover:bg-white/10 relative p-4 rounded-lg transition-all duration-200  ${
+        className={`hover:backdrop-blur-sm flex flex-col items-center hover:bg-white/10 relative p-1 lg:p-4 rounded-lg transition-all duration-200  ${
           pathname.includes(href)
             ? "text-white"
             : "text-zinc-400 hover:text-white/60"
@@ -24,6 +24,7 @@ const NavItem = ({
       >
         
         {icon}
+          <div className="lg:hidden text-xs text-center w-full ">{label}</div>
       </div>
     </Link>
   );

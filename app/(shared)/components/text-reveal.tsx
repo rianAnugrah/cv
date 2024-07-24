@@ -24,7 +24,7 @@ export default function TextReveal() {
       {texts.map((text, index) => (
         <div
           key={index}
-          className={`transition-opacity duration-500 ease-in-out absolute ${
+          className={`transition-opacity duration-500 ease-in-out absolute  w-full text-center lg:text-left ${
             currentIndex === index ? 'opacity-100' : 'opacity-0'
           }`}
         >

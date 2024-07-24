@@ -12,13 +12,14 @@ import {
   DiWordpress,
 } from "react-icons/di";
 import { RiNextjsFill, RiReactjsFill, RiWordpressFill } from "react-icons/ri";
+import ContainerGlass from "@/app/(shared)/components/container-glass";
 
 export default function WorksPage() {
   return (
-    <div className="w-full h-screen px-28 gap-4 flex flex-col items-start justify-center">
+    <div className="w-full h-screen px-4 lg:px-28 gap-4 flex flex-col items-start justify-start lg:justify-center pt-4">
       <h1 className="text-4xl mb-4">Past projects</h1>
-      <div className="h-[calc(100dvh_-_160px)] flex flex-col gap-4 w-full overflow-auto backdrop-blur-sm bg-white/10 border-white/30 border rounded-xl shadow p-8">
-        <div className="flex gap-4 items-center">
+      <ContainerGlass>
+        <div className="flex gap-4 items-start lg:items-center">
           <div className="text-7xl">
             <RiReactjsFill />
           </div>
@@ -31,7 +32,7 @@ export default function WorksPage() {
             >
               https://app.theravenry.com
             </Link>
-            <div className="flex gap-2 my-3">
+            <div className="flex gap-2 my-3 flex-wrap">
               <Pile>
                 <DiReact />
                 <p>React</p>
@@ -55,7 +56,7 @@ export default function WorksPage() {
             </div>
           </div>
         </div>
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-4 items-start lg:items-center">
           <div className="text-7xl">
             <RiNextjsFill />
           </div>
@@ -68,7 +69,7 @@ export default function WorksPage() {
             >
               https://solos.page
             </Link>
-            <div className="flex gap-2 my-3">
+            <div className="flex gap-2 my-3 flex-wrap">
               <Pile>
                 <DiReact />
                 <p>React</p>
@@ -88,7 +89,7 @@ export default function WorksPage() {
             </div>
           </div>
         </div>
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-4 items-start lg:items-center">
           <div className="text-7xl">
             <RiNextjsFill />
           </div>
@@ -102,7 +103,7 @@ export default function WorksPage() {
             >
               https://botak-ps.vercel.app
             </Link>
-            <div className="flex gap-2 my-3">
+            <div className="flex gap-2 my-3 flex-wrap">
               <Pile>
                 <DiReact />
                 <p>React</p>
@@ -119,7 +120,7 @@ export default function WorksPage() {
             </div>
           </div>
         </div>
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-4 items-start lg:items-center">
           <div className="text-7xl">
             <RiWordpressFill />
           </div>
@@ -132,7 +133,7 @@ export default function WorksPage() {
             >
               https://savicore.com
             </Link>
-            <div className="flex gap-2 my-3">
+            <div className="flex gap-2 my-3 flex-wrap">
               <Pile>
                 <DiWordpress />
                 <p>Wordpress</p>
@@ -152,7 +153,7 @@ export default function WorksPage() {
             </div>
           </div>
         </div>
-      </div>
+      </ContainerGlass>
     </div>
   );
 }
