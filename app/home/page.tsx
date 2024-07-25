@@ -2,6 +2,7 @@ import Image from "next/image";
 import { DiReact } from "react-icons/di";
 import { TiMail, TiSocialFacebook, TiSocialGithub, TiSocialLinkedin, TiSocialTwitter, TiSocialYoutube } from "react-icons/ti";
 import TextReveal from "@/app/(shared)/components/text-reveal";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -11,11 +12,11 @@ export default function Home() {
     
     <TextReveal />
     <div className="flex gap-6 text-xl lg:text-3xl">
-      <div className="hover:scale-125 hover:text-amber-300 transition-all"><TiMail /></div>      
-      <div className="hover:scale-125 hover:text-amber-300 transition-all"><TiSocialFacebook /></div>
-      <div className="hover:scale-125 hover:text-amber-300 transition-all"><TiSocialLinkedin /></div>
-      <div className="hover:scale-125 hover:text-amber-300 transition-all"><TiSocialTwitter /></div>
-      <div className="hover:scale-125 hover:text-amber-300 transition-all"><TiSocialGithub /></div>
+      <Link href="mailto:asnara.dev@gmail.com" target="_blank" className="hover:scale-125 hover:text-amber-300 transition-all"><TiMail /></Link>      
+      <Link href="https://facebook.com/sei.nairuka" target="_blank" className="hover:scale-125 hover:text-amber-300 transition-all"><TiSocialFacebook /></Link>
+      <Link href="https://id.linkedin.com/in/rian-anugrah-217113118" target="_blank" className="hover:scale-125 hover:text-amber-300 transition-all"><TiSocialLinkedin /></Link>
+      <Link href="https://twitter.com/@asnaradirdja" target="_blank" className="hover:scale-125 hover:text-amber-300 transition-all"><TiSocialTwitter /></Link>
+      <Link href="https://github.com/rianAnugrah" target="_blank" className="hover:scale-125 hover:text-amber-300 transition-all"><TiSocialGithub /></Link>
     </div>
   </main>
   );

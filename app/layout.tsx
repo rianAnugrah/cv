@@ -33,7 +33,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inconsolata.className}`}>
         {/* <div className="relative top-0 left-0 bg-gradient-to-tl from-[#0f2027] via-[#203A43] to-[#2C5364] text-amber-50 h-screen w-full flex flex-col lg:flex-row"> */}
-        <div className="bg-[url('/img/bg-gradient.png')] text-amber-50 h-screen w-full flex flex-col lg:flex-row">
+        <div className="bg-[url('/img/sunset-bg.jpg')] text-amber-50 h-screen w-full flex flex-col lg:flex-row">
           <div className="hidden lg:flex flex-col w-20 gap-4 items-center justify-center "><Navigation /></div>
           {children}
           <div className="flex lg:hidden flex-row h-16 w-full fixed bottom-0 gap-0 items-center justify-between px-4"><Navigation /></div>
