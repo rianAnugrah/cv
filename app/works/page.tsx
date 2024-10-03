@@ -1,5 +1,7 @@
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
+
 import {
   DiCss3,
   DiCss3Full,
@@ -21,7 +23,7 @@ export default function WorksPage() {
       <h1 className="text-4xl mb-4 mt-8">Past works</h1>
       <ContainerGlass>
        
-        <img src="/img/ravenry.png" className="w-full lg:w-[360px]  object-cover rounded-lg" />
+        <Image width={1280} height={720} alt="works-img" src="/img/ravenry.png" className="w-full lg:w-[360px]  object-cover rounded-lg" />
         <div className="flex gap-4 items-start lg:items-center">
              
           <div className="text-7xl">
@@ -62,7 +64,7 @@ export default function WorksPage() {
           </div>
         </div>
 
-        <img src="/img/solos.png" className="w-full lg:w-[360px]  object-cover rounded-lg" />
+        <Image width={1280} height={720} alt="works-img" src="/img/solos.png" className="w-full lg:w-[360px]  object-cover rounded-lg" />
         <div className="flex gap-4 items-start lg:items-center">
           <div className="text-7xl">
             <RiNextjsFill />
@@ -96,7 +98,7 @@ export default function WorksPage() {
             </div>
           </div>
         </div>
-        <img src="/img/bcendana.png" className="w-full lg:w-[360px]  object-cover rounded-lg" />
+        <Image width={1280} height={720} alt="works-img" src="/img/bcendana.png" className="w-full lg:w-[360px]  object-cover rounded-lg" />
         <div className="flex gap-4 items-start lg:items-center">
           <div className="text-7xl">
             <RiNextjsFill />
@@ -128,7 +130,7 @@ export default function WorksPage() {
             </div>
           </div>
         </div>
-        <img src="/img/savicore.png" className="w-full lg:w-[360px]  object-cover rounded-lg" />
+        <Image width={1280} height={720} alt="works-img" src="/img/savicore.png" className="w-full lg:w-[360px]  object-cover rounded-lg" />
         <div className="flex gap-4 items-start lg:items-center">
           <div className="text-7xl">
             <RiWordpressFill />
