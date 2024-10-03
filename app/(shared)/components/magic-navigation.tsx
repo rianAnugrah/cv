@@ -99,7 +99,7 @@ const MagicMenuWithScroll = () => {
 
 
       {/* Sections to scroll to */}
-      <div  className='h-[100dvh] overflow-auto'>
+      <div  className='h-[100svh] overflow-auto'>
         {menuItems.map((item, index) => (
           <div
             key={index}
