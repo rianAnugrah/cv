@@ -26,8 +26,8 @@ const MagicMenuWithScroll = () => {
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
   const menuItems = ['Home', 'About', 'Resume', 'Works', 'Store'];
-  const menuIcons = [<RiHome2Line />,<RiAccountCircleLine />,<RiAwardLine />,<RiBriefcase2Line />,<RiShoppingBag2Line />];
-  const contents = [<Home />,<AboutPage />,<ResumePage />,<WorksPage/>,<StorePage/>]
+  const menuIcons = [RiHome2Line, RiAccountCircleLine ,RiAwardLine ,RiBriefcase2Line ,RiShoppingBag2Line ];
+  const contents = [Home ,AboutPage ,ResumePage ,WorksPage,StorePage]
 
   // Refs to sections
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -81,7 +81,7 @@ const MagicMenuWithScroll = () => {
               onMouseLeave={() => setHoverIndex(null)}
               onClick={() => handleClick(index)}
             >
-              <div className={` z-10 `}>{menuIcons[index]}</div>
+              <div className={` z-10 `}> {React.createElement(menuIcons[index])}</div>
               <div className={` z-10 w-12 text-xs text-center `}>{item}</div>
               {/* Curved outside effect on hover and active */}
               <div
@@ -103,11 +103,13 @@ const MagicMenuWithScroll = () => {
         {menuItems.map((item, index) => (
           <div
             key={index}
-            ref={(el) => (sectionRefs.current[index] = el)}
+            ref={(el: HTMLDivElement | null) => {
+              if (el) sectionRefs.current[index] = el;
+            }}
             className="min-h-screen flex flex-col items-center justify-center text-white "
           >
             {/* <h1 className="text-4xl">{item} Section</h1> */}
-            {contents[index]}
+            {React.createElement(contents[index])}
           </div>
         ))}
       </div>
