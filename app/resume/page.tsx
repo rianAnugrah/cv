@@ -3,8 +3,8 @@ import ContainerGlass from "@/app/(shared)/components/container-glass";
 
 export default function ResumePage() {
   return (
-    <div className="w-full h-screen px-4 lg:px-28 gap-4 flex flex-col items-start justify-start lg:justify-center pt-4">
-      <h1 className="text-4xl mb-4">My timeline</h1>
+    <div className="w-full px-4 lg:px-28 gap-4 flex flex-col items-start justify-start lg:justify-center pt-4">
+      <h1 className="text-4xl mb-4 mt-8">My Resume timeline</h1>
       <ContainerGlass>
         <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
         <li>
@@ -46,7 +46,7 @@ export default function ResumePage() {
             </div>
             <div className="timeline-start mb-10 md:text-end">
               <time className="font-mono italic">2019</time>
-              <div className="text-lg font-black">PT. Happy Indoensia</div>
+              <div className="text-lg font-black">PT. Happy Indonesia</div>
               Designer, IT Support, Screen koordinator 
             </div>
             <hr />
@@ -70,7 +70,7 @@ export default function ResumePage() {
             <div className="timeline-end mb-10">
               <time className="font-mono italic">2017</time>
               <div className="text-lg font-black">Pt. Go Online Solusi</div>
-              Programmer
+              Php Fullstack Programmer using Opencart, managed <a href="https://www.gositus.com/portfolio/roepi-store" className="underline">Roepistore.com</a>
             </div>
             <hr />
           </li>
@@ -93,7 +93,7 @@ export default function ResumePage() {
             <div className="timeline-start mb-10 md:text-end">
               <time className="font-mono italic">2016</time>
               <div className="text-lg font-black">PT. Pharos Indonesia</div>
-              Programmer
+              Software Engineer working with R&D and Technical support to create integrate web interface fot internal temperature and humidity monitoring.
             </div>
             <hr />
           </li>

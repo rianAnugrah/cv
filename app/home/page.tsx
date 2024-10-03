@@ -11,7 +11,7 @@ export default function Home() {
     <p className="text-3xl lg:text-7xl text-center lg:text-left">Rian Anugrah </p>
     
     <TextReveal />
-    <div className="flex gap-6 text-xl lg:text-3xl">
+    <div className="flex gap-6 text-3xl lg:text-5xl">
       <Link href="mailto:asnara.dev@gmail.com" target="_blank" className="hover:scale-125 hover:text-amber-300 transition-all"><TiMail /></Link>      
       <Link href="https://facebook.com/sei.nairuka" target="_blank" className="hover:scale-125 hover:text-amber-300 transition-all"><TiSocialFacebook /></Link>
       <Link href="https://id.linkedin.com/in/rian-anugrah-217113118" target="_blank" className="hover:scale-125 hover:text-amber-300 transition-all"><TiSocialLinkedin /></Link>

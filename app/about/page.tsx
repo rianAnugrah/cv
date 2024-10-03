@@ -1,12 +1,25 @@
 import React from "react";
-import { RiNextjsLine } from "react-icons/ri";
+import {
+  RiBrush2Fill,
+  RiCss3Fill,
+  RiDatabase2Fill,
+  RiDatabaseFill,
+  RiGithubFill,
+  RiGithubLine,
+  RiHtml5Fill,
+  RiJavascriptFill,
+  RiNextjsLine,
+  RiNodejsFill,
+  RiReactjsFill,
+  RiTailwindCssFill,
+} from "react-icons/ri";
 import { SlSettings } from "react-icons/sl";
 import ContainerGlass from "@/app/(shared)/components/container-glass";
 
 export default function AboutPage() {
   return (
-    <div className="w-full h-screen px-4 lg:px-28 gap-4 flex flex-col items-start justify-start lg:justify-center pt-4">
-      <h1 className="text-4xl mb-4">About Me</h1>
+    <div className="w-full px-4 lg:px-28 gap-4 flex flex-col items-start justify-start lg:justify-center pt-4">
+      <h1 className="text-4xl mb-4 mt-8">About Me</h1>
       <ContainerGlass>
         <div>
           Hi, I am Experienced Software Engineer with a proven track record of
@@ -18,11 +31,21 @@ export default function AboutPage() {
             {" "}
             <p className="font-bold text-xl mt-6">What I do</p>
             <div>
-              <p className="font-bold text-sm">Website / Web Apps</p>
+              <p className="font-bold text-sm">Advanced frontend engineer</p>
               <p className="text-sm">
-                Experienced App Developer skilled in developing mobile and web
-                applications. Proficient in creating responsive, user-friendly,
-                and high-performing solutions using the latest technologies.
+                Experienced App Developer skilled in developing responsive
+                websites or applications. Proficient in creating responsive,
+                user-friendly, and high-performing solutions using the latest
+                technologies.
+              </p>
+            </div>
+            <div>
+              <p className="font-bold text-sm">Backend Engineer</p>
+              <p className="text-sm">
+                With expertise in building scalable, high-performance server-side
+                applications using Node.js, MongoDB, MySQL, SQLite. Experienced
+                in API development, database design, and deployment,
+                ensuring secure and efficient backend solutions.
               </p>
             </div>
             <div>
@@ -32,13 +55,6 @@ export default function AboutPage() {
                 developing scalable and efficient software solutions. Proficient
                 in system architecture, technology integration, and ensuring
                 high-quality performance.
-              </p>
-            </div>
-            <div>
-              <p className="font-bold text-sm">UI/UX Designer</p>
-              <p className="text-sm">
-                With coding experience you will get intuitive and aesthetic user
-                interfaces but still developer friendly.
               </p>
             </div>
           </div>
@@ -56,91 +72,91 @@ export default function AboutPage() {
               </div>
               <div className="flex">
                 <Pile>
-                  <RiNextjsLine />
+                  <RiReactjsFill />
+                  <p>ReactJs</p>
+                </Pile>
+              </div>
+              <div className="flex">
+                <Pile>
+                  <RiTailwindCssFill />
                   <p>Tailwind</p>
                 </Pile>
               </div>
               <div className="flex">
                 <Pile>
-                  <RiNextjsLine />
+                  <RiHtml5Fill />
                   <p>HTML</p>
                 </Pile>
               </div>
               <div className="flex">
                 <Pile>
-                  <RiNextjsLine />
+                  <RiCss3Fill />
                   <p>CSS</p>
                 </Pile>
               </div>
               <div className="flex">
                 <Pile>
-                  <RiNextjsLine />
+                  <RiDatabaseFill />
                   <p>MongoDB</p>
                 </Pile>
               </div>
               <div className="flex">
                 <Pile>
-                  <RiNextjsLine />
+                  <RiJavascriptFill />
                   <p>Javascript</p>
                 </Pile>
               </div>
               <div className="flex">
                 <Pile>
-                  <RiNextjsLine />
-                  <p>Figma</p>
-                </Pile>
-              </div>
-              <div className="flex">
-                <Pile>
-                  <RiNextjsLine />
+                  <RiNodejsFill />
                   <p>Node</p>
                 </Pile>
               </div>
               <div className="flex">
                 <Pile>
-                  <RiNextjsLine />
+                  <RiDatabase2Fill />
                   <p>MySQL</p>
                 </Pile>
               </div>
               <div className="flex">
                 <Pile>
-                  <RiNextjsLine />
+                  <RiBrush2Fill />
                   <p>Figma</p>
                 </Pile>
               </div>
               <div className="flex">
                 <Pile>
-                  <RiNextjsLine />
+                  <RiBrush2Fill />
                   <p>Photoshop</p>
                 </Pile>
               </div>{" "}
               <div className="flex">
                 <Pile>
-                  <RiNextjsLine />
-                  <p>Vercel</p>
+                  <RiNodejsFill />
+                  <p>Express</p>
                 </Pile>
               </div>{" "}
               <div className="flex">
                 <Pile>
-                  <RiNextjsLine />
+                  <RiBrush2Fill />
                   <p>Illustrator</p>
                 </Pile>
               </div>{" "}
               <div className="flex">
                 <Pile>
-                  <RiNextjsLine />
+                  <RiJavascriptFill />
                   <p>Vercel</p>
                 </Pile>
               </div>{" "}
               <div className="flex">
                 <Pile>
-                  <RiNextjsLine />
+                  <RiJavascriptFill />
                   <p>Netlify</p>
                 </Pile>
               </div>{" "}
               <div className="flex">
                 <Pile>
-                  <RiNextjsLine />
+                  <RiGithubFill />
                   <p>Github</p>
                 </Pile>
               </div>

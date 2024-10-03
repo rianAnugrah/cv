@@ -3,9 +3,6 @@
 import { useEffect, useState } from 'react';
 
 const texts = [
-  'Hello, I am Software Architect',
-  'Hello, I am Frontend Engineer',
-  'Hello, I am UI/UX Designer',
   'Hello, I am Fullstack Developer'
 ];
 
