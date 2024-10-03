@@ -106,7 +106,7 @@ const MagicMenuWithScroll = () => {
             ref={(el: HTMLDivElement | null) => {
               if (el) sectionRefs.current[index] = el;
             }}
-            className="min-h-screen flex flex-col items-center justify-center text-white "
+            className="min-h-[100svh] flex flex-col items-center justify-center text-white "
           >
             {/* <h1 className="text-4xl">{item} Section</h1> */}
             {React.createElement(contents[index])}
