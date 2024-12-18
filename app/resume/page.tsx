@@ -3,8 +3,8 @@ import ContainerGlass from "@/app/(shared)/components/container-glass";
 
 export default function ResumePage() {
   return (
-    <div className="w-full px-4 lg:px-28 gap-4 flex flex-col items-start justify-start lg:justify-center pt-4">
-      <h1 className="text-4xl mb-4 mt-8">My Resume timeline</h1>
+    <div className="w-full max-w-[64rem]  gap-4 flex flex-col items-start justify-start lg:justify-center pt-4 text-[#222]">
+      <h1 className="text-2xl mb-4 mt-8  px-4 lg:px-0">My Resume timeline</h1>
       <ContainerGlass>
         <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
         <li>

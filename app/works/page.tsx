@@ -19,8 +19,8 @@ import ContainerGlass from "@/app/(shared)/components/container-glass";
 
 export default function WorksPage() {
   return (
-    <div className="w-full px-4 lg:px-28 gap-4 flex flex-col items-start justify-start lg:justify-center pt-4">
-      <h1 className="text-4xl mb-4 mt-8">Past works</h1>
+    <div className="w-full max-w-[64rem] gap-4 flex flex-col items-start justify-start lg:justify-center pt-4 text-[#222]">
+      <h1 className="text-2xl mb-4 mt-8  px-4 lg:px-0">Past works</h1>
       <ContainerGlass>
        
         <Image width={1280} height={720} alt="works-img" src="/img/ravenry.PNG" className="w-full lg:w-[360px]  object-cover rounded-lg" />
@@ -171,7 +171,7 @@ export default function WorksPage() {
 
 const Pile = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="flex gap-1 items-center border rounded-full px-3 text-sm text-slate-300 border-slate-300">
+    <div className="flex gap-1 items-center border rounded-full px-3 text-sm text-[#222] border-[#222]">
       {children}
     </div>
   );

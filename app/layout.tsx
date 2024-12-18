@@ -31,9 +31,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+      </head>
       <body className={`${inconsolata.className}`}>
-        {/* <div className="relative  top-0 left-0 bg-gradient-to-tl from-[#0f2027] via-[#203A43] to-[#2C5364] text-amber-50 h-screen w-full flex flex-col lg:flex-row"> */}
-        <div className="bg-[url('/img/peakpx.jpg')] backdrop-opacity-25 text-amber-50  w-full flex flex-col lg:flex-row">
+        <div className="bg-[#f7f7f7] pt-[calc(4rem_-_2px)]">
+        {/* <div className="bg-slate-950 pt-[calc(4rem_-_2px)]"> */}
           
           {children}
         </div>

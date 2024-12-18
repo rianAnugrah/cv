@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 const texts = [
-  'Hello, I am Fullstack Developer'
+  'Hello, I am Fullstack Engineer'
 ];
 
 export default function TextReveal() {
