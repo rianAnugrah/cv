@@ -37,35 +37,35 @@ export default function Home() {
           <Link
             href="mailto:asnara.dev@gmail.com"
             target="_blank"
-            className="hover:scale-125 hover:text-[#A9D6EB] transition-all"
+            className="hover:scale-125 hover:text-slate-500 transition-all hover:border-slate-500 border border-transparent"
           >
             <TiMail />
           </Link>
           <Link
             href="https://facebook.com/sei.nairuka"
             target="_blank"
-            className="hover:scale-125 hover:text-[#A9D6EB] transition-all"
+            className="hover:scale-125 hover:text-slate-500 transition-all hover:border-slate-500 border border-transparent"
           >
             <TiSocialFacebook />
           </Link>
           <Link
             href="https://id.linkedin.com/in/rian-anugrah-217113118"
             target="_blank"
-            className="hover:scale-125 hover:text-[#A9D6EB] transition-all"
+            className="hover:scale-125 hover:text-slate-500 transition-all hover:border-slate-500 border border-transparent"
           >
             <TiSocialLinkedin />
           </Link>
           <Link
             href="https://twitter.com/@asnaradirdja"
             target="_blank"
-            className="hover:scale-125 hover:text-[#A9D6EB] transition-all"
+            className="hover:scale-125 hover:text-slate-500 transition-all hover:border-slate-500 border border-transparent"
           >
             <TiSocialTwitter />
           </Link>
           <Link
             href="https://github.com/rianAnugrah"
             target="_blank"
-            className="hover:scale-125 hover:text-[#A9D6EB] transition-all"
+            className="hover:scale-125 hover:text-slate-500 transition-all hover:border-slate-500 border border-transparent"
           >
             <TiSocialGithub />
           </Link>
