@@ -22,15 +22,15 @@ const NavBar = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
-  const menuItems = ["Home", "About", "Resume", "Works", "Store"];
+  const menuItems = ["Home", "Works", "About", "Resume",  "Store"];
   const menuIcons = [
     RiHome2Line,
+    RiBriefcase2Line,
     RiAccountCircleLine,
     RiAwardLine,
-    RiBriefcase2Line,
     RiShoppingBag2Line,
   ];
-  const contents = [Home, AboutPage, ResumePage, WorksPage, StorePage];
+  const contents = [Home, WorksPage, AboutPage, ResumePage,  StorePage];
 
   // Refs to sections
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
