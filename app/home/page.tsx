@@ -16,7 +16,7 @@ export default function Home() {
     <main className="flex flex-col md:flex-row w-full lg:max-w-[64rem] bg-slate-950 p-[1px] gap-[1px] ">
       <div className=" h-[400px] bg-[#FFF4B2] flex w-full lg:w-1/2 items-center justify-center text-[#222] ">
         <Image
-          src="/img/rian.jpeg"
+          src="/img/rian.png"
           alt="Rian"
           width={400}
           height={400}
