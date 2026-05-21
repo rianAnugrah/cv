@@ -100,6 +100,7 @@ export const APPS = [
   { id: "vercel", title: "Vercel", url: "https://vercel.com", icon: <RiGlobalLine />, component: <WebBrowserApp url="https://vercel.com" />, category: "Blocked", ramCost: 10 },
 
   // System
+  { id: "browser", title: "Web Browser", icon: <RiGlobalLine />, component: <WebBrowserApp showAddressBar={true} />, category: "System", ramCost: 20 },
   { id: "wikipedia", title: "Wikipedia", url: "https://en.m.wikipedia.org", icon: <RiGlobalLine />, component: <WebBrowserApp url="https://en.m.wikipedia.org" />, category: "System", ramCost: 15 },
   { id: "settings", title: "Settings", icon: <RiSettings4Line />, component: <SettingsApp />, category: "System", ramCost: 10 },
 ];
