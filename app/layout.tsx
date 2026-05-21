@@ -1,23 +1,22 @@
 import type { Metadata } from "next";
-import { Outfit, Space_Grotesk } from "next/font/google";
+import { Inter, VT323 } from "next/font/google";
 import "./globals.css";
-import Image from "next/image";
 
-const outfit = Outfit({ 
+const inter = Inter({ 
   subsets: ["latin"], 
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-outfit" 
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-inter" 
 });
 
-const spaceGrotesk = Space_Grotesk({ 
+const vt323 = VT323({ 
   subsets: ["latin"], 
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-space-grotesk" 
+  weight: ["400"],
+  variable: "--font-vt323" 
 });
 
 export const metadata: Metadata = {
-  title: "Rian Anugrah | Persona 3 Reload CV",
-  description: "Rian Anugrah - Software Engineer (Persona 3 Reload UI Redesign)",
+  title: "Rian Anugrah | Retro Synthwave CV",
+  description: "Rian Anugrah - Software Engineer (Retro 80s UI Redesign)",
 };
 
 export default function RootLayout({
@@ -26,26 +25,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${outfit.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={`${inter.variable} ${vt323.variable}`}>
       <head>
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
-      <body className="font-sans antialiased text-white bg-[#030816] selection:bg-[#00f0ff] selection:text-black">
-        {/* Deep ocean background elements */}
-        <div className="fixed inset-0 pointer-events-none z-0 p3r-bg-grid opacity-60"></div>
-        <div className="fixed inset-0 pointer-events-none z-0 bg-radial-gradient-overlay opacity-30"></div>
+      <body className="font-sans antialiased text-white bg-[#100720] selection:bg-[#ff00ff] selection:text-white crt-flicker">
         
-        {/* Floating Bubble background particles */}
-        <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-          <div className="p3r-bubble w-8 h-8 left-[10%]" style={{ animation: "bubbleFloat 18s infinite linear", animationDelay: "0s" }}></div>
-          <div className="p3r-bubble w-12 h-12 left-[30%]" style={{ animation: "bubbleFloat 22s infinite linear", animationDelay: "3s" }}></div>
-          <div className="p3r-bubble w-6 h-6 left-[55%]" style={{ animation: "bubbleFloat 15s infinite linear", animationDelay: "1s" }}></div>
-          <div className="p3r-bubble w-16 h-16 left-[75%]" style={{ animation: "bubbleFloat 26s infinite linear", animationDelay: "5s" }}></div>
-          <div className="p3r-bubble w-10 h-10 left-[85%]" style={{ animation: "bubbleFloat 20s infinite linear", animationDelay: "2s" }}></div>
+        {/* Retro Sunset */}
+        <div className="fixed inset-0 pointer-events-none z-0 flex items-center justify-center opacity-80" style={{ transform: "translateY(-15vh)" }}>
+           <div className="retro-sun w-[60vw] max-w-[500px] h-[60vw] max-h-[500px] rounded-full"></div>
         </div>
+
+        {/* Moving Perspective Grid */}
+        <div className="fixed bottom-0 left-0 w-full h-[50vh] pointer-events-none z-0 perspective-container">
+           <div className="synthwave-grid"></div>
+        </div>
+
+        {/* CRT Scanlines Overlay */}
+        <div className="fixed inset-0 pointer-events-none z-[100] scanlines opacity-30 mix-blend-overlay"></div>
 
         {/* Base Content wrapper */}
         <div className="relative z-10 pt-[calc(4rem_-_2px)] min-h-screen">

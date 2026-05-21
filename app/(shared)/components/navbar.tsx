@@ -32,7 +32,7 @@ const NavBar = () => {
   // Refs to sections
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Sound Engine
+  // Sound Engine (8-bit Arcade Style)
   const playHoverSound = () => {
     if (typeof window === "undefined") return;
     try {
@@ -44,15 +44,15 @@ const NavBar = () => {
       osc.connect(gain);
       gain.connect(ctx.destination);
       
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(900, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(1600, ctx.currentTime + 0.06);
+      osc.type = "square";
+      osc.frequency.setValueAtTime(440, ctx.currentTime);
+      osc.frequency.setValueAtTime(880, ctx.currentTime + 0.05);
       
-      gain.gain.setValueAtTime(0.02, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
+      gain.gain.setValueAtTime(0.015, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
       
       osc.start();
-      osc.stop(ctx.currentTime + 0.06);
+      osc.stop(ctx.currentTime + 0.1);
     } catch (e) {}
   };
 
@@ -63,22 +63,21 @@ const NavBar = () => {
       if (!AudioContextClass) return;
       const ctx = new AudioContextClass();
       
-      // Main retro chirp
+      // Arcade coin/jump sound
       const osc1 = ctx.createOscillator();
       const gain1 = ctx.createGain();
       osc1.connect(gain1);
       gain1.connect(ctx.destination);
       
-      osc1.type = "triangle";
-      osc1.frequency.setValueAtTime(500, ctx.currentTime);
-      osc1.frequency.setValueAtTime(1100, ctx.currentTime + 0.03);
-      osc1.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.09);
+      osc1.type = "square";
+      osc1.frequency.setValueAtTime(987.77, ctx.currentTime); // B5
+      osc1.frequency.setValueAtTime(1318.51, ctx.currentTime + 0.1); // E6
       
-      gain1.gain.setValueAtTime(0.06, ctx.currentTime);
-      gain1.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.09);
+      gain1.gain.setValueAtTime(0.05, ctx.currentTime);
+      gain1.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
       
       osc1.start();
-      osc1.stop(ctx.currentTime + 0.09);
+      osc1.stop(ctx.currentTime + 0.3);
     } catch (e) {}
   };
 
@@ -126,14 +125,14 @@ const NavBar = () => {
   return (
     <>
       {/* NAVBAR */}
-      <nav className="fixed h-[4.5rem] w-full top-0 flex justify-center bg-[#02050f]/90 text-white border-b-2 border-[#00f0ff]/30 z-50 backdrop-blur-md p3r-bg-grid">
+      <nav className="fixed h-[4.5rem] w-full top-0 flex justify-center bg-[#100720]/90 text-white border-b-2 border-[#ff00ff]/50 z-50 backdrop-blur-md">
         <ul className="flex items-center w-full justify-between lg:max-w-[64rem] px-4 md:px-0">
           
           {/* Logo & Name block */}
-          <div className="flex items-center space-x-2 skew-x-[-12deg] bg-[#00f0ff]/10 border border-[#00f0ff]/40 px-4 py-1.5 shadow-[2px_2px_0px_#ff3e6c]">
-            <div className="skew-x-[12deg] flex items-center space-x-2">
-              <Image src={`/img/logo.png`} className="h-8 w-8 object-contain" width={40} height={40} alt="Rian logo" />
-              <span className="p3r-font-display text-[#00f0ff] font-extrabold tracking-widest text-lg p3r-text-glow">RIAN.SYS</span>
+          <div className="flex items-center space-x-2 border-2 border-[#00ffff] bg-[#100720] px-4 py-1.5 shadow-[4px_4px_0px_#ff00ff]">
+            <div className="flex items-center space-x-2">
+              <Image src={`/img/logo.png`} className="h-8 w-8 object-contain retro-glitch mix-blend-screen hue-rotate-180" width={40} height={40} alt="Rian logo" />
+              <span className="retro-font-display text-[#00ffff] font-extrabold tracking-widest text-xl retro-text-glow retro-glitch">RIAN.SYS</span>
             </div>
           </div>
 
@@ -144,10 +143,10 @@ const NavBar = () => {
               return (
                 <li
                   key={index}
-                  className={`relative cursor-pointer h-[3.2rem] px-3 md:px-5 skew-x-[-12deg] flex items-center justify-center transition-all duration-200 border-t border-b border-transparent ${
+                  className={`relative cursor-pointer h-[3.2rem] px-3 md:px-5 flex items-center justify-center transition-all duration-200 border-2 border-transparent ${
                     isActive 
-                      ? "bg-[#00f0ff] text-[#02050f] border-x border-[#00f0ff] shadow-[0_0_12px_rgba(0,240,255,0.6)] font-black"
-                      : "text-gray-300 hover:bg-[#00f0ff]/10 hover:text-[#00f0ff] hover:border-x hover:border-[#00f0ff]/30"
+                      ? "bg-[#8b00ff]/30 text-[#00ffff] border-[#00ffff] shadow-[0_0_12px_rgba(0,255,255,0.6)] font-black"
+                      : "text-gray-300 hover:bg-[#ff00ff]/20 hover:text-[#ff00ff] hover:border-[#ff00ff]"
                   }`}
                   onMouseEnter={() => {
                     setHoverIndex(index);
@@ -156,24 +155,18 @@ const NavBar = () => {
                   onMouseLeave={() => setHoverIndex(null)}
                   onClick={() => handleClick(index)}
                 >
-                  {/* Skew reversed text & icon */}
-                  <div className="skew-x-[12deg] flex flex-col md:flex-row items-center justify-center md:space-x-1">
-                    {React.createElement(menuIcons[index], { className: "text-lg md:text-md" })}
-                    <span className="p3r-font-display text-[10px] md:text-sm font-semibold tracking-wider uppercase md:block hidden">{item}</span>
+                  <div className="flex flex-col md:flex-row items-center justify-center md:space-x-2">
+                    {React.createElement(menuIcons[index], { className: "text-xl md:text-lg" })}
+                    <span className="retro-font-display text-[12px] md:text-lg font-semibold tracking-widest uppercase md:block hidden">{item}</span>
                   </div>
-                  
-                  {/* Decorative P3R line at the bottom of active tab */}
-                  {isActive && (
-                    <div className="absolute bottom-[-1px] left-0 w-full h-[3px] bg-[#ff3e6c]" />
-                  )}
                 </li>
               );
             })}
           </div>
 
-          {/* Hire Me (P3R Combat HUD/Skill Button Style) */}
+          {/* Hire Me (Arcade Coin Button) */}
           <li 
-            className="skew-x-[-12deg] bg-[#ff3e6c] hover:bg-white text-white hover:text-black font-black uppercase text-xs md:text-sm px-4 md:px-6 h-[2.8rem] flex items-center justify-center cursor-pointer border border-[#ff3e6c] shadow-[3px_3px_0px_#00f0ff] transition-all duration-200"
+            className="bg-[#ff00ff] hover:bg-[#00ffff] text-[#100720] font-black uppercase text-xs md:text-lg px-4 md:px-6 h-[2.8rem] flex items-center justify-center cursor-pointer border-2 border-[#100720] shadow-[4px_4px_0px_#00ffff] hover:shadow-[4px_4px_0px_#ff00ff] transition-all duration-200"
             onMouseEnter={playHoverSound}
             onClick={playClickSound}
           >
@@ -181,9 +174,9 @@ const NavBar = () => {
               href="https://wa.me/6285720880038?text=Hi%20Rian%2C%20I%20want%20to%20discuss%20a%20project%20with%20you!" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="skew-x-[12deg] tracking-widest p3r-font-display"
+              className="tracking-widest retro-font-display animate-pulse"
             >
-              HIRE.EXE
+              INSERT COIN
             </a>
           </li>
         </ul>

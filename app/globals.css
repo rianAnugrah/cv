@@ -3,25 +3,24 @@
 @tailwind utilities;
 
 :root {
-  --font-space-grotesk: 'Space Grotesk', sans-serif;
-  --font-outfit: 'Outfit', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-vt323: 'VT323', monospace;
   
-  /* Persona 3 Reload Palette */
-  --p3r-bg-deep: #030816;
-  --p3r-bg-card: rgba(11, 23, 44, 0.7);
-  --p3r-cyan: #00f0ff;
-  --p3r-cyan-glow: rgba(0, 240, 255, 0.35);
-  --p3r-cyan-dark: #0088cc;
-  --p3r-pink: #ff3e6c;
-  --p3r-white: #ffffff;
-  --p3r-gray-text: #a5b4fc;
+  /* Retro 80s Synthwave Palette */
+  --retro-bg-deep: #100720;
+  --retro-bg-card: rgba(16, 7, 32, 0.8);
+  --retro-cyan: #00ffff;
+  --retro-pink: #ff00ff;
+  --retro-purple: #8b00ff;
+  --retro-yellow: #fcee0a;
+  --retro-orange: #ff8c00;
+  --retro-white: #ffffff;
 }
 
 body {
-  color: var(--p3r-white);
-  background: radial-gradient(circle at 50% 30%, #0d1e3d 0%, #030816 80%);
-  background-attachment: fixed;
-  font-family: var(--font-outfit);
+  color: var(--retro-white);
+  background: var(--retro-bg-deep);
+  font-family: var(--font-inter);
   overflow-x: hidden;
 }
 
@@ -30,108 +29,129 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #030816;
+  background: var(--retro-bg-deep);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--p3r-cyan-dark);
+  background: var(--retro-purple);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--p3r-cyan);
-  box-shadow: 0 0 10px var(--p3r-cyan);
+  background: var(--retro-pink);
+  box-shadow: 0 0 10px var(--retro-pink);
 }
 
 /* Animations */
-@keyframes waterFlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+@keyframes crtFlicker {
+  0% { opacity: 0.98; }
+  5% { opacity: 0.85; }
+  10% { opacity: 0.98; }
+  15% { opacity: 1; }
+  50% { opacity: 0.98; }
+  55% { opacity: 0.85; }
+  60% { opacity: 1; }
+  100% { opacity: 0.98; }
 }
 
-@keyframes bubbleFloat {
-  0% {
-    transform: translateY(100vh) scale(0.8) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.3;
-  }
-  90% {
-    opacity: 0.3;
-  }
-  100% {
-    transform: translateY(-10vh) scale(1.2) rotate(360deg);
-    opacity: 0;
-  }
+@keyframes scanlineMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100vh; }
 }
 
-@keyframes neonPulse {
-  0%, 100% {
-    box-shadow: 0 0 8px var(--p3r-cyan-glow), inset 0 0 8px var(--p3r-cyan-glow);
-    border-color: rgba(0, 240, 255, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 16px rgba(0, 240, 255, 0.6), inset 0 0 12px rgba(0, 240, 255, 0.6);
-    border-color: rgba(0, 240, 255, 0.9);
-  }
+@keyframes gridMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(40px); }
 }
 
-@keyframes scanline {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(100%);
-  }
+@keyframes glitch {
+  0% { text-shadow: 2px 0 var(--retro-pink), -2px 0 var(--retro-cyan); }
+  25% { text-shadow: -2px 0 var(--retro-pink), 2px 0 var(--retro-cyan); }
+  50% { text-shadow: 2px 0 var(--retro-cyan), -2px 0 var(--retro-pink); }
+  75% { text-shadow: -2px 0 var(--retro-cyan), 2px 0 var(--retro-pink); }
+  100% { text-shadow: 2px 0 var(--retro-pink), -2px 0 var(--retro-cyan); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 10px var(--retro-pink), inset 0 0 5px var(--retro-pink); }
+  50% { box-shadow: 0 0 25px var(--retro-pink), inset 0 0 15px var(--retro-pink); }
+}
+
+/* Base Effects */
+.crt-flicker {
+  animation: crtFlicker 0.15s infinite;
+}
+
+.scanlines {
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 50%,
+    rgba(0,0,0,0.2) 50%,
+    rgba(0,0,0,0.2)
+  );
+  background-size: 100% 4px;
+  animation: scanlineMove 10s linear infinite;
+}
+
+/* Synthwave Environment */
+.retro-sun {
+  background: linear-gradient(to bottom, var(--retro-yellow) 0%, var(--retro-orange) 50%, var(--retro-pink) 100%);
+  box-shadow: 0 0 100px var(--retro-pink), 0 0 200px var(--retro-orange);
+  /* Optional: horizontal cutouts */
+  mask-image: repeating-linear-gradient(to bottom, black 0px, black 8px, transparent 8px, transparent 12px);
+  -webkit-mask-image: repeating-linear-gradient(to bottom, black 0px, black 8px, transparent 8px, transparent 12px);
+}
+
+.perspective-container {
+  perspective: 400px;
+  overflow: hidden;
+}
+
+.synthwave-grid {
+  position: absolute;
+  bottom: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: 
+    linear-gradient(to right, var(--retro-cyan) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--retro-cyan) 1px, transparent 1px);
+  background-size: 40px 40px;
+  transform: rotateX(60deg);
+  animation: gridMove 2s linear infinite;
+  border-top: 2px solid var(--retro-pink);
+  box-shadow: 0 -10px 20px var(--retro-pink), inset 0 10px 20px var(--retro-cyan);
 }
 
 /* Utility Classes */
 @layer utilities {
-  .p3r-font-display {
-    font-family: var(--font-space-grotesk);
+  .retro-font-display {
+    font-family: var(--font-vt323);
   }
   
-  .p3r-skew {
-    transform: skewX(-12deg);
+  .retro-text-glow {
+    text-shadow: 0 0 8px var(--retro-cyan), 0 0 20px var(--retro-cyan);
+  }
+
+  .retro-text-glow-pink {
+    text-shadow: 0 0 8px var(--retro-pink), 0 0 20px var(--retro-pink);
+  }
+
+  .retro-box-glow {
+    box-shadow: 0 0 15px var(--retro-purple), inset 0 0 15px var(--retro-purple);
   }
   
-  .p3r-skew-reverse {
-    transform: skewX(12deg);
+  .retro-glitch:hover {
+    animation: glitch 0.2s infinite;
   }
   
-  .p3r-neon-glow {
-    animation: neonPulse 3s infinite ease-in-out;
+  .retro-border-cyan {
+    border-color: var(--retro-cyan);
+    box-shadow: 0 0 10px var(--retro-cyan);
   }
-
-  .p3r-text-glow {
-    text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
-  }
-
-  .p3r-text-glow-pink {
-    text-shadow: 0 0 8px rgba(255, 62, 108, 0.6);
-  }
-
-  .p3r-bg-grid {
-    background-size: 40px 40px;
-    background-image: 
-      linear-gradient(to right, rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
-  }
-
-  .p3r-bubble {
-    position: fixed;
-    bottom: -50px;
-    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2) 0%, rgba(0, 240, 255, 0.05) 70%);
-    border: 1px solid rgba(0, 240, 255, 0.15);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
+  
+  .retro-border-pink {
+    border-color: var(--retro-pink);
+    box-shadow: 0 0 10px var(--retro-pink);
   }
 }
 
