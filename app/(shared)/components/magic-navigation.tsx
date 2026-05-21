@@ -37,11 +37,12 @@ const MagicMenuWithScroll = () => {
 
   // Scroll tracking with Intersection Observer
   useEffect(() => {
+    const currentSections = sectionRefs.current;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const index = sectionRefs.current.indexOf(entry.target as HTMLDivElement);
+            const index = currentSections.indexOf(entry.target as HTMLDivElement);
             setActiveIndex(index);
           }
         });
@@ -49,12 +50,12 @@ const MagicMenuWithScroll = () => {
       { threshold: 0.6 } // Trigger when 60% of the section is in view
     );
 
-    sectionRefs.current.forEach((section) => {
+    currentSections.forEach((section) => {
       if (section) observer.observe(section);
     });
 
     return () => {
-      sectionRefs.current.forEach((section) => {
+      currentSections.forEach((section) => {
         if (section) observer.unobserve(section);
       });
     };

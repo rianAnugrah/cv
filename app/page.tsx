@@ -1,6 +1,10 @@
-import NavBar from "./(shared)/components/navbar";
-
+import { OSProvider } from "./(os)/context/OSContext";
+import Desktop from "./(os)/components/Desktop";
 
 export default function Home() {
-  return    <NavBar />
+  return (
+    <OSProvider>
+      <Desktop />
+    </OSProvider>
+  );
 }
