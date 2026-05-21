@@ -124,7 +124,7 @@ export default function Desktop() {
       <StartMenu isOpen={startOpen} onClose={() => setStartOpen(false)} />
 
       {/* Desktop Workspace (below taskbar) - Icons Hidden */}
-      <div className="absolute top-10 left-0 w-full h-[calc(100vh-40px)] p-4 flex flex-col flex-wrap items-start justify-start gap-4 z-10" onClick={() => setStartOpen(false)}>
+      <div className="absolute top-12 left-0 w-full h-[calc(100vh-48px)] p-4 flex flex-col flex-wrap items-start justify-start gap-4 z-10" onClick={() => setStartOpen(false)}>
       </div>
 
       {/* Render Open Windows */}

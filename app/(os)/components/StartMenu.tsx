@@ -63,7 +63,7 @@ export default function StartMenu({ isOpen, onClose }: { isOpen: boolean; onClos
   return (
     <div 
       ref={menuRef} 
-      className="absolute top-10 left-0 w-full h-[calc(100vh-40px)] sm:w-[450px] sm:h-[550px] bg-white/90 dark:bg-[#1a1a1a]/95 backdrop-blur-xl border border-gray-200 dark:border-white/10 shadow-2xl overflow-hidden flex z-[10000] animate-in fade-in slide-in-from-top-2 duration-200"
+      className="absolute top-12 left-0 w-full h-[calc(100vh-48px)] sm:left-2 sm:translate-x-0 sm:w-[450px] sm:h-[550px] bg-white/90 dark:bg-[#1a1a1a]/95 backdrop-blur-xl border border-gray-200 dark:border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.3)] sm:rounded-b-2xl sm:rounded-br-2xl overflow-hidden flex z-[10000] animate-in fade-in slide-in-from-top-4 duration-200"
     >
       {/* Left Sidebar */}
       <div className="w-12 h-full border-r border-gray-200 dark:border-white/10 flex flex-col items-center justify-between py-2 bg-gray-50/50 dark:bg-black/20 shrink-0">
