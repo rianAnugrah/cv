@@ -7,13 +7,15 @@ export interface OSWindow {
   isMinimized: boolean;
   isMaximized: boolean;
   zIndex: number;
+  ramCost: number;
 }
 
 interface OSContextProps {
   windows: OSWindow[];
   activeWindowId: string | null;
   wallpaper: string;
-  openApp: (id: string, title: string) => void;
+  currentRam: number;
+  openApp: (id: string, title: string, ramCost?: number) => void;
   closeApp: (id: string) => void;
   toggleMinimize: (id: string) => void;
   toggleMaximize: (id: string) => void;
@@ -29,6 +31,9 @@ export const OSProvider = ({ children }: { children: ReactNode }) => {
   const [wallpaper, setWallpaperState] = useState<string>("https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop"); // default elegant wallpaper fallback
   const [maxZIndex, setMaxZIndex] = useState(10);
 
+  const currentRam = windows.reduce((sum, w) => sum + w.ramCost, 0);
+  const MAX_RAM = 100;
+
   const focusApp = (id: string) => {
     setMaxZIndex((prev) => prev + 1);
     setWindows((prev) =>
@@ -37,18 +42,26 @@ export const OSProvider = ({ children }: { children: ReactNode }) => {
     setActiveWindowId(id);
   };
 
-  const openApp = (id: string, title: string) => {
+  const openApp = (id: string, title: string, ramCost: number = 10) => {
     setWindows((prev) => {
       if (prev.find((w) => w.id === id)) {
         focusApp(id);
         return prev;
       }
+      
+      const potentialRam = currentRam + ramCost;
+      if (potentialRam > MAX_RAM) {
+        alert(`System Error: Out of Memory! Cannot open ${title}. Please close some windows first.`);
+        return prev;
+      }
+
       const newWindow: OSWindow = {
         id,
         title,
         isMinimized: false,
         isMaximized: false,
         zIndex: maxZIndex + 1,
+        ramCost,
       };
       setMaxZIndex((z) => z + 1);
       setActiveWindowId(id);
@@ -110,6 +123,7 @@ export const OSProvider = ({ children }: { children: ReactNode }) => {
         windows,
         activeWindowId,
         wallpaper,
+        currentRam,
         openApp,
         closeApp,
         toggleMinimize,

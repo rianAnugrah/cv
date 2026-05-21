@@ -4,7 +4,7 @@ import { useOS } from "../context/OSContext";
 import { RiWifiFill, RiBattery2ChargeLine } from "react-icons/ri";
 
 export default function Taskbar({ onStartClick }: { onStartClick: (e: React.MouseEvent) => void }) {
-  const { windows, activeWindowId, toggleMinimize, focusApp } = useOS();
+  const { windows, activeWindowId, toggleMinimize, focusApp, currentRam } = useOS();
   const [time, setTime] = useState<string>("");
 
   useEffect(() => {
@@ -60,12 +60,15 @@ export default function Taskbar({ onStartClick }: { onStartClick: (e: React.Mous
       </div>
 
       {/* Right side: System Tray & Clock */}
-      <div className="flex items-center h-full gap-3 px-2 text-sm font-medium">
-        <div className="flex items-center gap-2 opacity-80">
+      <div className="flex items-center h-full gap-3 px-2 text-xs font-medium">
+        <div className="flex items-center gap-1 opacity-80 bg-black/5 dark:bg-white/10 px-2 py-1 rounded">
+          <span>RAM: {currentRam}%</span>
+        </div>
+        <div className="flex items-center gap-2 opacity-80 text-sm">
           <RiWifiFill />
           <RiBattery2ChargeLine className="text-lg" />
         </div>
-        <span>{time}</span>
+        <span className="text-sm">{time}</span>
       </div>
     </div>
   );
