@@ -123,8 +123,33 @@ export default function Desktop() {
       <Taskbar onStartClick={(e) => { e.stopPropagation(); setStartOpen((prev) => !prev); }} />
       <StartMenu isOpen={startOpen} onClose={() => setStartOpen(false)} />
 
-      {/* Desktop Workspace (below taskbar) - Icons Hidden */}
-      <div className="absolute top-10 left-0 w-full h-[calc(100vh-40px)] p-4 flex flex-col flex-wrap items-start justify-start gap-4 z-10" onClick={() => setStartOpen(false)}>
+      {/* Desktop Workspace (below taskbar) */}
+      <div className="absolute top-10 left-0 w-full h-[calc(100vh-40px)] p-6 z-10 flex flex-col items-end" onClick={() => setStartOpen(false)}>
+        
+        {/* Portfolio Widget */}
+        <div className="w-72 sm:w-80 bg-white/10 dark:bg-black/20 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-3xl p-5 shadow-[0_8px_32px_rgba(0,0,0,0.15)] animate-in fade-in zoom-in-95 duration-500">
+          <div className="flex items-center gap-2 mb-4 px-1">
+            <RiFolderUserLine className="text-xl text-white drop-shadow-md" />
+            <h2 className="text-white font-bold tracking-wide drop-shadow-md">Portfolio</h2>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {APPS.filter(app => app.category === "Portfolio").map(app => (
+              <button 
+                key={app.id}
+                onClick={(e) => { e.stopPropagation(); openApp(app.id, app.title, app.ramCost); }}
+                className="bg-white/10 dark:bg-black/20 hover:bg-white/20 dark:hover:bg-white/10 border border-white/10 dark:border-white/5 hover:border-white/30 dark:hover:border-white/20 transition-all rounded-2xl p-4 flex flex-col items-center justify-center gap-2 group shadow-sm hover:shadow-md"
+              >
+                <div className="text-3xl text-white group-hover:scale-110 transition-transform drop-shadow-sm">
+                  {app.icon}
+                </div>
+                <span className="text-xs font-medium text-white/90 group-hover:text-white drop-shadow-sm">
+                  {app.title}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
       </div>
 
       {/* Render Open Windows */}
