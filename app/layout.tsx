@@ -15,8 +15,8 @@ const vt323 = VT323({
 });
 
 export const metadata: Metadata = {
-  title: "Rian Anugrah | Retro Synthwave CV",
-  description: "Rian Anugrah - Software Engineer (Retro 80s UI Redesign)",
+  title: "Rian Anugrah | OS Portfolio",
+  description: "Rian Anugrah - Software Engineer Portfolio",
 };
 
 export default function RootLayout({
@@ -32,20 +32,8 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
-      <body className="font-sans antialiased text-white bg-[#100720] selection:bg-[#ff00ff] selection:text-white">
-        
-        {/* Retro Sunset */}
-        <div className="fixed inset-0 pointer-events-none z-0 flex items-center justify-center opacity-80" style={{ transform: "translateY(-15vh)" }}>
-           <div className="retro-sun w-[60vw] max-w-[500px] h-[60vw] max-h-[500px] rounded-full"></div>
-        </div>
-
-        {/* Moving Perspective Grid */}
-        <div className="fixed bottom-0 left-0 w-full h-[50vh] pointer-events-none z-0 perspective-container">
-           <div className="synthwave-grid"></div>
-        </div>
-
-        {/* Base Content wrapper */}
-        <div className="relative z-10 pt-[calc(4rem_-_2px)] min-h-screen">
+      <body className="font-sans antialiased text-gray-900 bg-black selection:bg-blue-500 selection:text-white overflow-hidden">
+        <div className="relative z-10 w-full h-screen overflow-hidden">
           {children}
         </div>
       </body>
