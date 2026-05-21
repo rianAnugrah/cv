@@ -34,8 +34,8 @@ export default function Window({ id, title, children }: WindowProps) {
       <div
         ref={nodeRef}
         onMouseDown={() => focusApp(id)}
-        className={`absolute overflow-hidden flex flex-col bg-white/70 dark:bg-black/70 backdrop-blur-xl border border-gray-200 dark:border-white/10 shadow-2xl rounded-xl ${
-          windowState.isMaximized ? "inset-0 !w-full !h-[calc(100%-40px)] !transform-none rounded-none border-0 top-10" : "w-[90%] md:w-[800px] h-[600px] top-[10%] left-[5%] md:left-[10%]"
+        className={`absolute overflow-hidden flex flex-col bg-white/70 dark:bg-black/70 backdrop-blur-xl border border-gray-200 dark:border-white/10 shadow-2xl ${
+          windowState.isMaximized ? "inset-0 !w-full !h-[calc(100%-40px)] !transform-none rounded-none border-0 top-10" : "w-[90%] md:w-[800px] h-[600px] top-[10%] left-[5%] md:left-[10%] rounded-xl"
         }`}
         style={{ zIndex: windowState.zIndex }}
       >

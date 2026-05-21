@@ -1,13 +1,15 @@
 "use client";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { useOS } from "../context/OSContext";
-import { RiSettings4Line, RiShutDownLine } from "react-icons/ri";
+import { RiSettings4Line, RiShutDownLine, RiFullscreenLine, RiFullscreenExitLine } from "react-icons/ri";
 import { APPS } from "./Desktop";
 
 export default function StartMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const { openApp } = useOS();
   const menuRef = useRef<HTMLDivElement>(null);
+
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -15,11 +17,32 @@ export default function StartMenu({ isOpen, onClose }: { isOpen: boolean; onClos
         onClose();
       }
     };
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     }
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
   }, [isOpen, onClose]);
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch((err) => {
+        console.error(`Error attempting to enable fullscreen mode: ${err.message}`);
+      });
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -40,7 +63,7 @@ export default function StartMenu({ isOpen, onClose }: { isOpen: boolean; onClos
   return (
     <div 
       ref={menuRef} 
-      className="absolute top-10 left-0 w-[450px] h-[550px] bg-white/90 dark:bg-[#1a1a1a]/95 backdrop-blur-xl border border-gray-200 dark:border-white/10 shadow-2xl overflow-hidden flex z-[10000] animate-in fade-in slide-in-from-top-2 duration-200"
+      className="absolute top-10 left-0 w-full h-[calc(100vh-40px)] sm:w-[450px] sm:h-[550px] bg-white/90 dark:bg-[#1a1a1a]/95 backdrop-blur-xl border border-gray-200 dark:border-white/10 shadow-2xl overflow-hidden flex z-[10000] animate-in fade-in slide-in-from-top-2 duration-200"
     >
       {/* Left Sidebar */}
       <div className="w-12 h-full border-r border-gray-200 dark:border-white/10 flex flex-col items-center justify-between py-2 bg-gray-50/50 dark:bg-black/20 shrink-0">
@@ -49,10 +72,13 @@ export default function StartMenu({ isOpen, onClose }: { isOpen: boolean; onClos
         </div>
         
         <div className="flex flex-col gap-2 mb-2">
-          <button onClick={() => handleOpen("settings", "Settings", 10)} className="w-10 h-10 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-black/10 dark:hover:bg-white/10 rounded-md transition-colors">
+          <button onClick={toggleFullscreen} className="w-10 h-10 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-black/10 dark:hover:bg-white/10 rounded-md transition-colors" title="Toggle Fullscreen">
+            {isFullscreen ? <RiFullscreenExitLine className="text-xl" /> : <RiFullscreenLine className="text-xl" />}
+          </button>
+          <button onClick={() => handleOpen("settings", "Settings", 10)} className="w-10 h-10 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-black/10 dark:hover:bg-white/10 rounded-md transition-colors" title="Settings">
             <RiSettings4Line className="text-xl" />
           </button>
-          <button onClick={() => alert("Shut down?")} className="w-10 h-10 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-red-500/10 hover:text-red-500 rounded-md transition-colors">
+          <button onClick={() => alert("Shut down?")} className="w-10 h-10 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-red-500/10 hover:text-red-500 rounded-md transition-colors" title="Shut Down">
             <RiShutDownLine className="text-xl" />
           </button>
         </div>

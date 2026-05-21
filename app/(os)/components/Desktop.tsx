@@ -106,7 +106,7 @@ export const APPS = [
 ];
 
 export default function Desktop() {
-  const { windows, wallpaper, openApp } = useOS();
+  const { windows, wallpaper, openApp, pendingCloseAppId, confirmCloseApp, cancelCloseApp } = useOS();
   const [startOpen, setStartOpen] = useState(false);
 
   return (
@@ -137,6 +137,32 @@ export default function Desktop() {
           </Window>
         );
       })}
+
+      {/* Confirmation Modal for Closing Apps */}
+      {pendingCloseAppId && (
+        <div className="absolute inset-0 bg-black/50 z-[100000] flex items-center justify-center backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-white dark:bg-[#1a1a1a] p-6 rounded-xl shadow-2xl max-w-sm w-full border border-gray-200 dark:border-white/10 animate-in zoom-in-95 duration-200">
+            <h3 className="text-lg font-bold mb-2 text-gray-900 dark:text-white">Close Application</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-300 mb-6">
+              Are you sure you want to close {APPS.find(a => a.id === pendingCloseAppId)?.title || "this app"}? Any unsaved progress inside the window will be lost.
+            </p>
+            <div className="flex justify-end gap-3">
+              <button 
+                onClick={cancelCloseApp}
+                className="px-4 py-2 text-sm font-medium rounded hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-gray-800 dark:text-gray-200"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={confirmCloseApp}
+                className="px-4 py-2 text-sm font-medium bg-red-500 hover:bg-red-600 text-white rounded transition-colors shadow-sm"
+              >
+                Close App
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

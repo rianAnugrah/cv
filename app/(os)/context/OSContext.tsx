@@ -15,8 +15,11 @@ interface OSContextProps {
   activeWindowId: string | null;
   wallpaper: string;
   currentRam: number;
+  pendingCloseAppId: string | null;
   openApp: (id: string, title: string, ramCost?: number) => void;
   closeApp: (id: string) => void;
+  confirmCloseApp: () => void;
+  cancelCloseApp: () => void;
   toggleMinimize: (id: string) => void;
   toggleMaximize: (id: string) => void;
   focusApp: (id: string) => void;
@@ -28,6 +31,7 @@ const OSContext = createContext<OSContextProps | undefined>(undefined);
 export const OSProvider = ({ children }: { children: ReactNode }) => {
   const [windows, setWindows] = useState<OSWindow[]>([]);
   const [activeWindowId, setActiveWindowId] = useState<string | null>(null);
+  const [pendingCloseAppId, setPendingCloseAppId] = useState<string | null>(null);
   const [wallpaper, setWallpaperState] = useState<string>("https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop"); // default elegant wallpaper fallback
   const [maxZIndex, setMaxZIndex] = useState(10);
 
@@ -70,8 +74,19 @@ export const OSProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const closeApp = (id: string) => {
-    setWindows((prev) => prev.filter((win) => win.id !== id));
-    setActiveWindowId((prev) => (prev === id ? null : prev));
+    setPendingCloseAppId(id);
+  };
+
+  const confirmCloseApp = () => {
+    if (pendingCloseAppId) {
+      setWindows((prev) => prev.filter((win) => win.id !== pendingCloseAppId));
+      setActiveWindowId((prev) => (prev === pendingCloseAppId ? null : prev));
+      setPendingCloseAppId(null);
+    }
+  };
+
+  const cancelCloseApp = () => {
+    setPendingCloseAppId(null);
   };
 
   const toggleMinimize = (id: string) => {
@@ -122,10 +137,13 @@ export const OSProvider = ({ children }: { children: ReactNode }) => {
       value={{
         windows,
         activeWindowId,
+        pendingCloseAppId,
         wallpaper,
         currentRam,
         openApp,
         closeApp,
+        confirmCloseApp,
+        cancelCloseApp,
         toggleMinimize,
         toggleMaximize,
         focusApp,
