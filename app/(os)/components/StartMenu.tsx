@@ -64,15 +64,31 @@ export default function StartMenu({ isOpen, onClose }: { isOpen: boolean; onClos
           <div key={category} className="mb-6">
             <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3 pl-1">{category}</h3>
             <div className="grid grid-cols-3 gap-2">
-              {apps.map((app, index) => (
-                <Tile 
-                  key={app.id}
-                  icon={<div className="text-3xl mb-2">{app.icon}</div>} 
-                  label={app.title} 
-                  color={colorMap[(catIndex * 3 + index) % colorMap.length]} 
-                  onClick={() => handleOpen(app.id, app.title, app.ramCost)} 
-                />
-              ))}
+              {apps.map((app, index) => {
+                const url = (app as any).url;
+                return (
+                  <Tile 
+                    key={app.id}
+                    icon={
+                      url ? (
+                        <div className="w-10 h-10 mb-2 bg-white/90 rounded-md flex items-center justify-center shadow-sm overflow-hidden p-1.5">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img 
+                            src={`https://www.google.com/s2/favicons?domain=${url}&sz=64`} 
+                            alt={app.title} 
+                            className="w-full h-full object-contain" 
+                          />
+                        </div>
+                      ) : (
+                        <div className="text-3xl mb-2">{app.icon}</div>
+                      )
+                    } 
+                    label={app.title} 
+                    color={colorMap[(catIndex * 3 + index) % colorMap.length]} 
+                    onClick={() => handleOpen(app.id, app.title, app.ramCost)} 
+                  />
+                );
+              })}
             </div>
           </div>
         ))}
