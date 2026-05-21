@@ -32,7 +32,7 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
-      <body className="font-sans antialiased text-white bg-[#100720] selection:bg-[#ff00ff] selection:text-white crt-flicker">
+      <body className="font-sans antialiased text-white bg-[#100720] selection:bg-[#ff00ff] selection:text-white">
         
         {/* Retro Sunset */}
         <div className="fixed inset-0 pointer-events-none z-0 flex items-center justify-center opacity-80" style={{ transform: "translateY(-15vh)" }}>
@@ -43,9 +43,6 @@ export default function RootLayout({
         <div className="fixed bottom-0 left-0 w-full h-[50vh] pointer-events-none z-0 perspective-container">
            <div className="synthwave-grid"></div>
         </div>
-
-        {/* CRT Scanlines Overlay */}
-        <div className="fixed inset-0 pointer-events-none z-[100] scanlines opacity-30 mix-blend-overlay"></div>
 
         {/* Base Content wrapper */}
         <div className="relative z-10 pt-[calc(4rem_-_2px)] min-h-screen">
