@@ -21,19 +21,19 @@ export default function Taskbar({ onStartClick }: { onStartClick: (e: React.Mous
   return (
     <>
       {/* Top Full-Width Taskbar */}
-      <div className="absolute top-0 left-0 w-full h-12 bg-[#051122]/80 dark:bg-[#051122]/90 backdrop-blur-2xl border-b border-cyan-400/30 shadow-[0_4px_30px_rgba(0,170,255,0.15)] flex items-center justify-between px-4 z-[9999] select-none">
+      <div className="absolute top-0 left-0 w-full h-10 bg-[#051122]/80 dark:bg-[#051122]/90 backdrop-blur-2xl border-b border-cyan-400/30 shadow-[0_4px_30px_rgba(0,170,255,0.15)] flex items-center justify-between px-4 z-[9999] select-none">
         
         {/* Left Side (Start Button) */}
         <div className="flex-1 flex items-center justify-start">
           <button 
             onClick={onStartClick}
-            className="w-10 h-10 rounded-xl hover:bg-white/10 flex items-center justify-center transition-all group relative"
+            className="w-8 h-8 rounded-lg hover:bg-white/10 flex items-center justify-center transition-all group relative"
           >
-            <div className="grid grid-cols-2 gap-[3px]">
-              <div className="w-[7px] h-[7px] bg-cyan-400 rounded-[2px] shadow-[0_0_5px_rgba(34,211,238,0.6)]"></div>
-              <div className="w-[7px] h-[7px] bg-cyan-400 rounded-[2px] shadow-[0_0_5px_rgba(34,211,238,0.6)]"></div>
-              <div className="w-[7px] h-[7px] bg-cyan-400 rounded-[2px] shadow-[0_0_5px_rgba(34,211,238,0.6)]"></div>
-              <div className="w-[7px] h-[7px] bg-cyan-400 rounded-[2px] shadow-[0_0_5px_rgba(34,211,238,0.6)]"></div>
+            <div className="grid grid-cols-2 gap-[2px]">
+              <div className="w-[6px] h-[6px] bg-cyan-400 rounded-[2px] shadow-[0_0_5px_rgba(34,211,238,0.6)]"></div>
+              <div className="w-[6px] h-[6px] bg-cyan-400 rounded-[2px] shadow-[0_0_5px_rgba(34,211,238,0.6)]"></div>
+              <div className="w-[6px] h-[6px] bg-cyan-400 rounded-[2px] shadow-[0_0_5px_rgba(34,211,238,0.6)]"></div>
+              <div className="w-[6px] h-[6px] bg-cyan-400 rounded-[2px] shadow-[0_0_5px_rgba(34,211,238,0.6)]"></div>
             </div>
           </button>
         </div>
@@ -48,9 +48,9 @@ export default function Taskbar({ onStartClick }: { onStartClick: (e: React.Mous
           const iconNode = appData ? (
             (appData as any).url ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={`https://www.google.com/s2/favicons?domain=${(appData as any).url}&sz=64`} alt="" className="w-6 h-6 object-contain pointer-events-none" />
+              <img src={`https://www.google.com/s2/favicons?domain=${(appData as any).url}&sz=64`} alt="" className="w-5 h-5 object-contain pointer-events-none" />
             ) : (
-              <div className="w-6 h-6 flex items-center justify-center text-xl text-white">{appData.icon}</div>
+              <div className="w-5 h-5 flex items-center justify-center text-lg text-white">{appData.icon}</div>
             )
           ) : null;
 
@@ -61,7 +61,7 @@ export default function Taskbar({ onStartClick }: { onStartClick: (e: React.Mous
                   if (isActive) toggleMinimize(win.id);
                   else focusApp(win.id);
                 }}
-                className={`h-10 w-10 sm:w-auto sm:px-3 rounded-xl flex items-center justify-center gap-2 transition-all ${
+                className={`h-8 w-8 sm:w-auto sm:px-2 rounded-lg flex items-center justify-center gap-1.5 transition-all ${
                   isActive ? "bg-white/15 shadow-inner" : "hover:bg-white/10 hover:scale-105"
                 }`}
               >

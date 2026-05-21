@@ -17,7 +17,7 @@ import WebBrowserApp from "../apps/WebBrowserApp";
 import CalculatorApp from "../apps/CalculatorApp";
 import NotepadApp from "../apps/NotepadApp";
 
-import { 
+import {
   RiFolderUserLine, RiBriefcase4Line, RiFileList3Line, RiStore2Line, RiSettings4Line,
   RiCalculatorLine, RiFileTextLine, RiGamepadLine, RiGlobalLine, RiBrushLine,
   RiLayoutLine, RiCodeBoxLine, RiBarChartBoxLine, RiMapPinLine, RiRobotLine, RiMessage2Line
@@ -29,11 +29,11 @@ export const APPS = [
   { id: "works", title: "Works", icon: <RiBriefcase4Line />, component: <WorksApp />, category: "Portfolio", ramCost: 10 },
   { id: "resume", title: "Resume", icon: <RiFileList3Line />, component: <ResumeApp />, category: "Portfolio", ramCost: 10 },
   { id: "store", title: "Store", icon: <RiStore2Line />, component: <StoreApp />, category: "Portfolio", ramCost: 10 },
-  
+
   // Productivity
   { id: "calculator", title: "Calculator", icon: <RiCalculatorLine />, component: <CalculatorApp />, category: "Productivity", ramCost: 5 },
   { id: "notepad", title: "Notepad", icon: <RiFileTextLine />, component: <NotepadApp />, category: "Productivity", ramCost: 5 },
-  
+
   // KOMUNIKASI & PRODUKTIVITAS
   { id: "google-docs", title: "Google Docs", url: "https://docs.google.com", icon: <RiFileTextLine />, component: <WebBrowserApp url="https://docs.google.com" />, category: "Productivity", ramCost: 20 },
   { id: "google-sheets", title: "Google Sheets", url: "https://docs.google.com/spreadsheets", icon: <RiFileTextLine />, component: <WebBrowserApp url="https://docs.google.com/spreadsheets" />, category: "Productivity", ramCost: 20 },
@@ -87,7 +87,7 @@ export const APPS = [
   { id: "wolfram", title: "Wolfram Cloud", url: "https://www.wolframcloud.com", icon: <RiRobotLine />, component: <WebBrowserApp url="https://www.wolframcloud.com" />, category: "AI Tools", ramCost: 25 },
 
   // Games
-  { id: "2048", title: "2048", url: "https://play2048.co/", icon: <RiGamepadLine />, component: <WebBrowserApp url="https://play2048.co/" />, category: "Games", ramCost: 15 },
+  { id: "2048", title: "2048", url: "https://2048game.com", icon: <RiGamepadLine />, component: <WebBrowserApp url="https://play2048.co/" />, category: "Games", ramCost: 15 },
 
   // Blocked Testing
   { id: "chatgpt", title: "ChatGPT", url: "https://chatgpt.com", icon: <RiGlobalLine />, component: <WebBrowserApp url="https://chatgpt.com" />, category: "Blocked", ramCost: 10 },
@@ -124,7 +124,7 @@ export default function Desktop() {
       <StartMenu isOpen={startOpen} onClose={() => setStartOpen(false)} />
 
       {/* Desktop Workspace (below taskbar) - Icons Hidden */}
-      <div className="absolute top-12 left-0 w-full h-[calc(100vh-48px)] p-4 flex flex-col flex-wrap items-start justify-start gap-4 z-10" onClick={() => setStartOpen(false)}>
+      <div className="absolute top-10 left-0 w-full h-[calc(100vh-40px)] p-4 flex flex-col flex-wrap items-start justify-start gap-4 z-10" onClick={() => setStartOpen(false)}>
       </div>
 
       {/* Render Open Windows */}
@@ -147,13 +147,13 @@ export default function Desktop() {
               Are you sure you want to close {APPS.find(a => a.id === pendingCloseAppId)?.title || "this app"}? Any unsaved progress inside the window will be lost.
             </p>
             <div className="flex justify-end gap-3">
-              <button 
+              <button
                 onClick={cancelCloseApp}
                 className="px-4 py-2 text-sm font-medium rounded hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-gray-800 dark:text-gray-200"
               >
                 Cancel
               </button>
-              <button 
+              <button
                 onClick={confirmCloseApp}
                 className="px-4 py-2 text-sm font-medium bg-red-500 hover:bg-red-600 text-white rounded transition-colors shadow-sm"
               >
