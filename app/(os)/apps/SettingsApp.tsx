@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useOS } from "../context/OSContext";
 
 const WALLPAPERS = [
-  { id: "default", name: "Default (Ravenry)", url: "/img/ravenry.PNG" },
   { id: "abstract-1", name: "Abstract Gradient", url: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop" },
   { id: "minimal-dark", name: "Minimal Dark", url: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2940&auto=format&fit=crop" },
   { id: "macos-monterey", name: "MacOS Style", url: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=2940&auto=format&fit=crop" },

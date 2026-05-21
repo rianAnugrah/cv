@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useOS } from "../context/OSContext";
-import { RiMenuFill, RiWifiFill, RiBattery2ChargeLine } from "react-icons/ri";
+import { RiWifiFill, RiBattery2ChargeLine } from "react-icons/ri";
 
 export default function Taskbar({ onStartClick }: { onStartClick: (e: React.MouseEvent) => void }) {
   const { windows, activeWindowId, toggleMinimize, focusApp } = useOS();
@@ -25,9 +25,14 @@ export default function Taskbar({ onStartClick }: { onStartClick: (e: React.Mous
         {/* Start Button */}
         <button 
           onClick={onStartClick}
-          className="h-8 px-3 rounded-md hover:bg-black/5 dark:hover:bg-white/10 flex items-center justify-center transition-colors"
+          className="h-8 px-3 rounded-md hover:bg-black/5 dark:hover:bg-white/10 flex items-center justify-center transition-colors group"
         >
-          <RiMenuFill className="text-lg" />
+          <div className="grid grid-cols-2 gap-[2px] opacity-80 group-hover:opacity-100 transition-opacity">
+            <div className="w-[6px] h-[6px] bg-current rounded-sm"></div>
+            <div className="w-[6px] h-[6px] bg-current rounded-sm"></div>
+            <div className="w-[6px] h-[6px] bg-current rounded-sm"></div>
+            <div className="w-[6px] h-[6px] bg-current rounded-sm"></div>
+          </div>
         </button>
 
         <div className="w-px h-5 bg-gray-300 dark:bg-white/20 mx-1"></div>

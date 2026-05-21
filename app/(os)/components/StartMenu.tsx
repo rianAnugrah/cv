@@ -30,48 +30,67 @@ export default function StartMenu({ isOpen, onClose }: { isOpen: boolean; onClos
   return (
     <div 
       ref={menuRef} 
-      className="absolute top-10 left-2 w-64 bg-white/80 dark:bg-[#1a1a1a]/80 backdrop-blur-xl border border-gray-200 dark:border-white/10 shadow-2xl rounded-xl overflow-hidden flex flex-col z-[10000] p-2 animate-in fade-in slide-in-from-top-2 duration-200"
+      className="absolute top-10 left-0 w-[400px] h-[450px] bg-white/90 dark:bg-[#1a1a1a]/95 backdrop-blur-xl border border-gray-200 dark:border-white/10 shadow-2xl overflow-hidden flex z-[10000] animate-in fade-in slide-in-from-top-2 duration-200"
     >
-      {/* Header Profile */}
-      <div className="flex items-center gap-3 p-3 border-b border-gray-200 dark:border-white/10 mb-2">
-        <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-300 dark:border-white/20">
-          <Image src="/img/rian.png" alt="Rian" width={40} height={40} className="w-full h-full object-cover" />
+      {/* Left Sidebar */}
+      <div className="w-12 h-full border-r border-gray-200 dark:border-white/10 flex flex-col items-center justify-between py-2 bg-gray-50/50 dark:bg-black/20">
+        <div className="w-8 h-8 rounded-full overflow-hidden border border-gray-300 dark:border-white/20 hover:scale-105 transition-transform cursor-pointer mt-2">
+          <Image src="/img/rian.png" alt="Rian" width={32} height={32} className="w-full h-full object-cover" />
         </div>
-        <div className="flex flex-col">
-          <span className="font-semibold text-sm">Rian Anugrah</span>
-          <span className="text-xs text-gray-500 dark:text-gray-400">Software Engineer</span>
+        
+        <div className="flex flex-col gap-2 mb-2">
+          <button onClick={() => handleOpen("settings", "Settings")} className="w-10 h-10 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-black/10 dark:hover:bg-white/10 rounded-md transition-colors">
+            <RiSettings4Line className="text-xl" />
+          </button>
+          <button onClick={() => alert("Shut down?")} className="w-10 h-10 flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-red-500/10 hover:text-red-500 rounded-md transition-colors">
+            <RiShutDownLine className="text-xl" />
+          </button>
         </div>
       </div>
 
-      {/* Menu Items */}
-      <div className="flex flex-col gap-1">
-        <MenuItem icon={<RiFolderUserLine />} label="Profile" onClick={() => handleOpen("profile", "Profile")} />
-        <MenuItem icon={<RiBriefcase4Line />} label="Works" onClick={() => handleOpen("works", "Works")} />
-        <MenuItem icon={<RiFileList3Line />} label="Resume" onClick={() => handleOpen("resume", "Resume")} />
-        <MenuItem icon={<RiStore2Line />} label="Store" onClick={() => handleOpen("store", "Store")} />
-        <MenuItem icon={<RiSettings4Line />} label="Settings" onClick={() => handleOpen("settings", "Settings")} />
-      </div>
-
-      {/* Footer */}
-      <div className="mt-2 pt-2 border-t border-gray-200 dark:border-white/10">
-        <MenuItem icon={<RiShutDownLine />} label="Shut Down" onClick={() => alert("Please don't shut me down! :(")} danger />
+      {/* Main Grid Content */}
+      <div className="flex-1 p-4 overflow-y-auto">
+        <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4 pl-1">Productivity</h3>
+        
+        <div className="grid grid-cols-2 gap-2">
+          <Tile 
+            icon={<RiFolderUserLine className="text-3xl mb-2" />} 
+            label="Profile" 
+            color="bg-blue-500" 
+            onClick={() => handleOpen("profile", "Profile")} 
+          />
+          <Tile 
+            icon={<RiBriefcase4Line className="text-3xl mb-2" />} 
+            label="Works" 
+            color="bg-teal-500" 
+            onClick={() => handleOpen("works", "Works")} 
+          />
+          <Tile 
+            icon={<RiFileList3Line className="text-3xl mb-2" />} 
+            label="Resume" 
+            color="bg-orange-500" 
+            onClick={() => handleOpen("resume", "Resume")} 
+          />
+          <Tile 
+            icon={<RiStore2Line className="text-3xl mb-2" />} 
+            label="Store" 
+            color="bg-purple-500" 
+            onClick={() => handleOpen("store", "Store")} 
+          />
+        </div>
       </div>
     </div>
   );
 }
 
-function MenuItem({ icon, label, onClick, danger }: { icon: React.ReactNode, label: string, onClick: () => void, danger?: boolean }) {
+function Tile({ icon, label, color, onClick }: { icon: React.ReactNode, label: string, color: string, onClick: () => void }) {
   return (
     <button 
       onClick={onClick}
-      className={`flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-        danger 
-          ? "text-red-500 hover:bg-red-500/10" 
-          : "hover:bg-black/5 dark:hover:bg-white/10"
-      }`}
+      className={`${color} text-white w-full aspect-square rounded-md flex flex-col items-center justify-center hover:brightness-110 active:scale-95 transition-all shadow-sm`}
     >
-      <div className="text-lg">{icon}</div>
-      <span>{label}</span>
+      {icon}
+      <span className="text-sm font-medium">{label}</span>
     </button>
   );
 }

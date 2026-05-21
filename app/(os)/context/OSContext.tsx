@@ -26,7 +26,7 @@ const OSContext = createContext<OSContextProps | undefined>(undefined);
 export const OSProvider = ({ children }: { children: ReactNode }) => {
   const [windows, setWindows] = useState<OSWindow[]>([]);
   const [activeWindowId, setActiveWindowId] = useState<string | null>(null);
-  const [wallpaper, setWallpaperState] = useState<string>("/img/ravenry.PNG"); // default elegant wallpaper fallback
+  const [wallpaper, setWallpaperState] = useState<string>("https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop"); // default elegant wallpaper fallback
   const [maxZIndex, setMaxZIndex] = useState(10);
 
   const focusApp = (id: string) => {
