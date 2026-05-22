@@ -20,7 +20,7 @@ import NotepadApp from "../apps/NotepadApp";
 import {
   RiFolderUserLine, RiBriefcase4Line, RiFileList3Line, RiStore2Line, RiSettings4Line,
   RiCalculatorLine, RiFileTextLine, RiGamepadLine, RiGlobalLine, RiBrushLine,
-  RiLayoutLine, RiCodeBoxLine, RiBarChartBoxLine, RiMapPinLine, RiRobotLine, RiMessage2Line
+  RiCodeBoxLine, RiBarChartBoxLine, RiMapPinLine, RiRobotLine
 } from "react-icons/ri";
 
 export const APPS = [
@@ -33,17 +33,13 @@ export const APPS = [
   // Productivity
   { id: "calculator", title: "Calculator", icon: <RiCalculatorLine />, component: <CalculatorApp />, category: "Productivity", ramCost: 5 },
   { id: "notepad", title: "Notepad", icon: <RiFileTextLine />, component: <NotepadApp />, category: "Productivity", ramCost: 5 },
-
-  // KOMUNIKASI & PRODUKTIVITAS
-  { id: "google-docs", title: "Google Docs", url: "https://docs.google.com", icon: <RiFileTextLine />, component: <WebBrowserApp url="https://docs.google.com" />, category: "Productivity", ramCost: 20 },
-  { id: "google-sheets", title: "Google Sheets", url: "https://docs.google.com/spreadsheets", icon: <RiFileTextLine />, component: <WebBrowserApp url="https://docs.google.com/spreadsheets" />, category: "Productivity", ramCost: 20 },
   { id: "excalidraw", title: "Excalidraw", url: "https://excalidraw.com/", icon: <RiBrushLine />, component: <WebBrowserApp url="https://excalidraw.com/" />, category: "Productivity", ramCost: 15 },
-  { id: "miro", title: "Miro", url: "https://miro.com", icon: <RiLayoutLine />, component: <WebBrowserApp url="https://miro.com" />, category: "Productivity", ramCost: 25 },
-  { id: "notion", title: "Notion", url: "https://www.notion.so", icon: <RiFileTextLine />, component: <WebBrowserApp url="https://www.notion.so" />, category: "Productivity", ramCost: 25 },
+  { id: "tldraw", title: "tldraw", url: "https://www.tldraw.com", icon: <RiBrushLine />, component: <WebBrowserApp url="https://www.tldraw.com" />, category: "Productivity", ramCost: 15 },
   { id: "hackmd", title: "HackMD", url: "https://hackmd.io", icon: <RiFileTextLine />, component: <WebBrowserApp url="https://hackmd.io" />, category: "Productivity", ramCost: 15 },
   { id: "etherpad", title: "Etherpad", url: "https://etherpad.org", icon: <RiFileTextLine />, component: <WebBrowserApp url="https://etherpad.org" />, category: "Productivity", ramCost: 15 },
+  { id: "desmos", title: "Desmos", url: "https://www.desmos.com/calculator", icon: <RiCalculatorLine />, component: <WebBrowserApp url="https://www.desmos.com/calculator" />, category: "Productivity", ramCost: 10 },
 
-  // DEVELOPMENT & CODING
+  // Development
   { id: "codepen", title: "CodePen", url: "https://codepen.io", icon: <RiCodeBoxLine />, component: <WebBrowserApp url="https://codepen.io" />, category: "Development", ramCost: 20 },
   { id: "jsfiddle", title: "JSFiddle", url: "https://jsfiddle.net", icon: <RiCodeBoxLine />, component: <WebBrowserApp url="https://jsfiddle.net" />, category: "Development", ramCost: 20 },
   { id: "stackblitz", title: "StackBlitz", url: "https://stackblitz.com", icon: <RiCodeBoxLine />, component: <WebBrowserApp url="https://stackblitz.com" />, category: "Development", ramCost: 30 },
@@ -51,53 +47,38 @@ export const APPS = [
   { id: "replit", title: "Replit", url: "https://replit.com", icon: <RiCodeBoxLine />, component: <WebBrowserApp url="https://replit.com" />, category: "Development", ramCost: 30 },
   { id: "swagger", title: "Swagger Editor", url: "https://editor.swagger.io", icon: <RiCodeBoxLine />, component: <WebBrowserApp url="https://editor.swagger.io" />, category: "Development", ramCost: 15 },
 
-  // MEDIA & VISUALISASI
-  { id: "canva", title: "Canva", url: "https://www.canva.com", icon: <RiBrushLine />, component: <WebBrowserApp url="https://www.canva.com" />, category: "Media", ramCost: 30 },
-  { id: "figma", title: "Figma", url: "https://www.figma.com", icon: <RiLayoutLine />, component: <WebBrowserApp url="https://www.figma.com" />, category: "Media", ramCost: 40 },
+  // Media
+  { id: "photopea", title: "Photopea", url: "https://www.photopea.com", icon: <RiBrushLine />, component: <WebBrowserApp url="https://www.photopea.com" />, category: "Media", ramCost: 30 },
   { id: "youtube", title: "YouTube", url: "https://www.youtube.com", icon: <RiGlobalLine />, component: <WebBrowserApp url="https://www.youtube.com/embed" />, category: "Media", ramCost: 25 },
-  { id: "vimeo", title: "Vimeo", url: "https://vimeo.com", icon: <RiGlobalLine />, component: <WebBrowserApp url="https://vimeo.com" />, category: "Media", ramCost: 25 },
   { id: "spotify", title: "Spotify", url: "https://open.spotify.com", icon: <RiGlobalLine />, component: <WebBrowserApp url="https://open.spotify.com/embed" />, category: "Media", ramCost: 20 },
   { id: "soundcloud", title: "SoundCloud", url: "https://soundcloud.com", icon: <RiGlobalLine />, component: <WebBrowserApp url="https://soundcloud.com" />, category: "Media", ramCost: 15 },
 
-  // DASHBOARD & ANALYTICS
-  { id: "metabase", title: "Metabase", url: "https://www.metabase.com", icon: <RiBarChartBoxLine />, component: <WebBrowserApp url="https://www.metabase.com" />, category: "Analytics", ramCost: 20 },
-  { id: "grafana", title: "Grafana", url: "https://grafana.com", icon: <RiBarChartBoxLine />, component: <WebBrowserApp url="https://grafana.com" />, category: "Analytics", ramCost: 20 },
-  { id: "superset", title: "Superset", url: "https://superset.apache.org", icon: <RiBarChartBoxLine />, component: <WebBrowserApp url="https://superset.apache.org" />, category: "Analytics", ramCost: 20 },
-  { id: "looker", title: "Looker Studio", url: "https://lookerstudio.google.com", icon: <RiBarChartBoxLine />, component: <WebBrowserApp url="https://lookerstudio.google.com" />, category: "Analytics", ramCost: 25 },
+  // Analytics
+  { id: "rawgraphs", title: "RAWGraphs", url: "https://app.rawgraphs.io", icon: <RiBarChartBoxLine />, component: <WebBrowserApp url="https://app.rawgraphs.io" />, category: "Analytics", ramCost: 15 },
+  { id: "observable", title: "ObservableHQ", url: "https://observablehq.com", icon: <RiCodeBoxLine />, component: <WebBrowserApp url="https://observablehq.com" />, category: "Analytics", ramCost: 20 },
 
-  // FILE & DOCUMENT VIEWER
-  { id: "drive", title: "Google Drive", url: "https://drive.google.com", icon: <RiFolderUserLine />, component: <WebBrowserApp url="https://drive.google.com" />, category: "Files", ramCost: 20 },
-  { id: "office", title: "Office Online", url: "https://www.office.com", icon: <RiFileTextLine />, component: <WebBrowserApp url="https://www.office.com" />, category: "Files", ramCost: 20 },
+  // Files
   { id: "pdfjs", title: "PDF.js Viewer", url: "https://mozilla.github.io/pdf.js", icon: <RiFileTextLine />, component: <WebBrowserApp url="https://mozilla.github.io/pdf.js" />, category: "Files", ramCost: 15 },
 
-  // MAPS & LOCATION
+  // Maps
   { id: "osm", title: "OpenStreetMap", url: "https://www.openstreetmap.org", icon: <RiMapPinLine />, component: <WebBrowserApp url="https://www.openstreetmap.org/export/embed.html" />, category: "Maps", ramCost: 20 },
-  { id: "mapbox", title: "Mapbox", url: "https://www.mapbox.com", icon: <RiMapPinLine />, component: <WebBrowserApp url="https://www.mapbox.com" />, category: "Maps", ramCost: 20 },
-  { id: "leaflet", title: "Leaflet", url: "https://leafletjs.com", icon: <RiMapPinLine />, component: <WebBrowserApp url="https://leafletjs.com" />, category: "Maps", ramCost: 15 },
+  { id: "googlemaps", title: "Google Maps", url: "https://maps.google.com", icon: <RiMapPinLine />, component: <WebBrowserApp url="https://maps.google.com/maps?output=embed" />, category: "Maps", ramCost: 20 },
 
-  // SOCIAL / COMMUNITY
-  { id: "discord", title: "Discord", url: "https://discord.com", icon: <RiMessage2Line />, component: <WebBrowserApp url="https://discord.com" />, category: "Social", ramCost: 25 },
-  { id: "reddit", title: "Reddit", url: "https://www.reddit.com", icon: <RiMessage2Line />, component: <WebBrowserApp url="https://www.reddit.com" />, category: "Social", ramCost: 20 },
-  { id: "twitter", title: "Twitter / X", url: "https://x.com", icon: <RiMessage2Line />, component: <WebBrowserApp url="https://x.com" />, category: "Social", ramCost: 20 },
-  { id: "instagram", title: "Instagram", url: "https://www.instagram.com", icon: <RiMessage2Line />, component: <WebBrowserApp url="https://www.instagram.com" />, category: "Social", ramCost: 20 },
-
-  // AI & INTERACTIVE TOOLS
+  // AI Tools
   { id: "huggingface", title: "Hugging Face", url: "https://huggingface.co", icon: <RiRobotLine />, component: <WebBrowserApp url="https://huggingface.co" />, category: "AI Tools", ramCost: 20 },
-  { id: "observable", title: "ObservableHQ", url: "https://observablehq.com", icon: <RiCodeBoxLine />, component: <WebBrowserApp url="https://observablehq.com" />, category: "AI Tools", ramCost: 20 },
   { id: "wolfram", title: "Wolfram Cloud", url: "https://www.wolframcloud.com", icon: <RiRobotLine />, component: <WebBrowserApp url="https://www.wolframcloud.com" />, category: "AI Tools", ramCost: 25 },
 
   // Games
-  { id: "2048", title: "2048", url: "https://2048game.com", icon: <RiGamepadLine />, component: <WebBrowserApp url="https://play2048.co/" />, category: "Games", ramCost: 15 },
-
-  // Blocked Testing
-  { id: "chatgpt", title: "ChatGPT", url: "https://chatgpt.com", icon: <RiGlobalLine />, component: <WebBrowserApp url="https://chatgpt.com" />, category: "Blocked", ramCost: 10 },
-  { id: "github", title: "GitHub", url: "https://github.com", icon: <RiGlobalLine />, component: <WebBrowserApp url="https://github.com" />, category: "Blocked", ramCost: 10 },
-  { id: "gmail", title: "Gmail", url: "https://mail.google.com", icon: <RiGlobalLine />, component: <WebBrowserApp url="https://mail.google.com" />, category: "Blocked", ramCost: 10 },
-  { id: "whatsapp", title: "WhatsApp Web", url: "https://web.whatsapp.com", icon: <RiGlobalLine />, component: <WebBrowserApp url="https://web.whatsapp.com" />, category: "Blocked", ramCost: 10 },
-  { id: "facebook", title: "Facebook", url: "https://facebook.com", icon: <RiGlobalLine />, component: <WebBrowserApp url="https://facebook.com" />, category: "Blocked", ramCost: 10 },
-  { id: "google-search", title: "Google Search", url: "https://google.com", icon: <RiGlobalLine />, component: <WebBrowserApp url="https://google.com/search?igu=1" />, category: "Blocked", ramCost: 10 },
-  { id: "netlify", title: "Netlify", url: "https://app.netlify.com", icon: <RiGlobalLine />, component: <WebBrowserApp url="https://app.netlify.com" />, category: "Blocked", ramCost: 10 },
-  { id: "vercel", title: "Vercel", url: "https://vercel.com", icon: <RiGlobalLine />, component: <WebBrowserApp url="https://vercel.com" />, category: "Blocked", ramCost: 10 },
+  { id: "2048", title: "2048", url: "https://play2048.co", icon: <RiGamepadLine />, component: <WebBrowserApp url="https://play2048.co/" />, category: "Games", ramCost: 10 },
+  { id: "chess", title: "Chess", url: "https://lichess.org", icon: <RiGamepadLine />, component: <WebBrowserApp url="https://lichess.org/ai" />, category: "Games", ramCost: 20 },
+  { id: "slither", title: "Slither.io", url: "https://slither.io", icon: <RiGamepadLine />, component: <WebBrowserApp url="https://slither.io" />, category: "Games", ramCost: 20 },
+  { id: "agar", title: "Agar.io", url: "https://agar.io", icon: <RiGamepadLine />, component: <WebBrowserApp url="https://agar.io" />, category: "Games", ramCost: 20 },
+  { id: "skribbl", title: "Skribbl.io", url: "https://skribbl.io", icon: <RiGamepadLine />, component: <WebBrowserApp url="https://skribbl.io" />, category: "Games", ramCost: 15 },
+  { id: "krunker", title: "Krunker.io", url: "https://krunker.io", icon: <RiGamepadLine />, component: <WebBrowserApp url="https://krunker.io" />, category: "Games", ramCost: 30 },
+  { id: "wordle", title: "Wordle", url: "https://wordlegame.org", icon: <RiGamepadLine />, component: <WebBrowserApp url="https://wordlegame.org" />, category: "Games", ramCost: 10 },
+  { id: "minesweeper", title: "Minesweeper", url: "https://minesweeper.online", icon: <RiGamepadLine />, component: <WebBrowserApp url="https://minesweeper.online" />, category: "Games", ramCost: 10 },
+  { id: "sudoku", title: "Sudoku", url: "https://sudoku.com", icon: <RiGamepadLine />, component: <WebBrowserApp url="https://sudoku.com" />, category: "Games", ramCost: 10 },
+  { id: "diep", title: "Diep.io", url: "https://diep.io", icon: <RiGamepadLine />, component: <WebBrowserApp url="https://diep.io" />, category: "Games", ramCost: 20 },
 
   // System
   { id: "browser", title: "Web Browser", icon: <RiGlobalLine />, component: <WebBrowserApp showAddressBar={true} />, category: "System", ramCost: 20 },
