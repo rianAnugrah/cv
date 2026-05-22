@@ -34,34 +34,34 @@ export default function Window({ id, title, children }: WindowProps) {
       <div
         ref={nodeRef}
         onMouseDown={() => focusApp(id)}
-        className={`absolute overflow-hidden flex flex-col bg-white/70 dark:bg-black/70 backdrop-blur-xl border border-gray-200 dark:border-white/10 shadow-2xl ${
+        className={`absolute overflow-hidden flex flex-col bg-white/90 backdrop-blur-xl border border-gray-200 shadow-xl ${
           windowState.isMaximized ? "inset-0 !w-full !h-[calc(100%-40px)] !transform-none rounded-none border-0 top-10" : "w-[90%] md:w-[800px] h-[600px] top-[10%] left-[5%] md:left-[10%] rounded-xl"
         }`}
         style={{ zIndex: windowState.zIndex }}
       >
         {/* Title Bar */}
         <div 
-          className={`window-handle flex items-center justify-between px-4 py-2 select-none ${windowState.isMaximized ? '' : 'cursor-move'} ${isActive ? 'bg-white/50 dark:bg-white/10' : 'bg-white/20 dark:bg-white/5'} border-b border-gray-200 dark:border-white/10`}
+          className={`window-handle flex items-center justify-between px-4 py-2 select-none ${windowState.isMaximized ? '' : 'cursor-move'} ${isActive ? 'bg-gray-50' : 'bg-white/60'} border-b border-gray-200`}
           onDoubleClick={() => toggleMaximize(id)}
         >
-          <div className="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200">
+          <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
             {title}
           </div>
-          
-          <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400">
-            <button 
+
+          <div className="flex items-center gap-3 text-gray-400">
+            <button
               onClick={(e) => { e.stopPropagation(); toggleMinimize(id); }}
-              className="hover:text-gray-900 dark:hover:text-white transition-colors"
+              className="hover:text-gray-700 transition-colors"
             >
               <VscChromeMinimize />
             </button>
-            <button 
+            <button
               onClick={(e) => { e.stopPropagation(); toggleMaximize(id); }}
-              className="hover:text-gray-900 dark:hover:text-white transition-colors"
+              className="hover:text-gray-700 transition-colors"
             >
               {windowState.isMaximized ? <VscChromeRestore /> : <VscChromeMaximize />}
             </button>
-            <button 
+            <button
               onClick={(e) => { e.stopPropagation(); closeApp(id); }}
               className="hover:text-red-500 transition-colors ml-1"
             >
@@ -71,7 +71,7 @@ export default function Window({ id, title, children }: WindowProps) {
         </div>
 
         {/* Content Body */}
-        <div className="flex-1 overflow-auto bg-gray-50/50 dark:bg-[#121212]/80">
+        <div className="flex-1 overflow-auto bg-white">
           {children}
         </div>
       </div>
