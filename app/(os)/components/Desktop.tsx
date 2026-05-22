@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useOS } from "../context/OSContext";
 import Taskbar from "./Taskbar";
@@ -86,9 +86,27 @@ export const APPS = [
   { id: "settings", title: "Settings", icon: <RiSettings4Line />, component: <SettingsApp />, category: "System", ramCost: 10 },
 ];
 
+const PORTFOLIO_ACCENTS = [
+  "from-blue-400/25 to-blue-600/5 border-blue-400/25 hover:from-blue-400/40 hover:border-blue-400/40",
+  "from-amber-400/25 to-amber-600/5 border-amber-400/25 hover:from-amber-400/40 hover:border-amber-400/40",
+  "from-emerald-400/25 to-emerald-600/5 border-emerald-400/25 hover:from-emerald-400/40 hover:border-emerald-400/40",
+  "from-violet-400/25 to-violet-600/5 border-violet-400/25 hover:from-violet-400/40 hover:border-violet-400/40",
+];
+
 export default function Desktop() {
-  const { windows, wallpaper, openApp, pendingCloseAppId, confirmCloseApp, cancelCloseApp } = useOS();
+  const { windows, wallpaper, openApp, pendingCloseAppId, confirmCloseApp, cancelCloseApp, currentRam } = useOS();
   const [startOpen, setStartOpen] = useState(false);
+  const [now, setNow] = useState(new Date());
+
+  useEffect(() => {
+    const t = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(t);
+  }, []);
+
+  const timeStr = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  const dateStr = now.toLocaleDateString([], { weekday: "long", month: "long", day: "numeric" });
+  const ramPct = Math.min(currentRam, 100);
+  const ramColor = ramPct >= 80 ? "from-red-400 to-rose-500" : ramPct >= 50 ? "from-amber-400 to-orange-400" : "from-cyan-400 to-blue-500";
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-black text-gray-900 dark:text-gray-100 font-sans">
@@ -105,25 +123,55 @@ export default function Desktop() {
       <StartMenu isOpen={startOpen} onClose={() => setStartOpen(false)} />
 
       {/* Desktop Workspace (below taskbar) */}
-      <div className="absolute top-10 left-0 w-full h-[calc(100vh-40px)] p-6 z-10 flex flex-col items-end" onClick={() => setStartOpen(false)}>
-        
-        {/* Portfolio Widget */}
-        <div className="w-72 sm:w-80 bg-white/10 dark:bg-black/20 backdrop-blur-xl border border-white/20 dark:border-white/10 rounded-3xl p-5 shadow-[0_8px_32px_rgba(0,0,0,0.15)] animate-in fade-in zoom-in-95 duration-500">
-          <div className="flex items-center gap-2 mb-4 px-1">
-            <RiFolderUserLine className="text-xl text-white drop-shadow-md" />
-            <h2 className="text-white font-bold tracking-wide drop-shadow-md">Portfolio</h2>
+      <div className="absolute top-10 left-0 w-full h-[calc(100vh-40px)] p-4 sm:p-6 z-10 flex flex-col items-end gap-3" onClick={() => setStartOpen(false)}>
+
+        {/* Clock + System Widget */}
+        <div className="w-72 sm:w-80 bg-black/25 backdrop-blur-2xl border border-white/10 rounded-3xl p-5 shadow-[0_8px_40px_rgba(0,0,0,0.3)] animate-in fade-in slide-in-from-right-4 duration-500">
+          <div className="mb-4">
+            <div className="text-5xl font-extralight text-white tracking-tight tabular-nums drop-shadow-lg leading-none">
+              {timeStr}
+            </div>
+            <div className="text-xs text-white/50 mt-1.5 font-medium tracking-wide uppercase">{dateStr}</div>
           </div>
-          <div className="grid grid-cols-2 gap-3">
-            {APPS.filter(app => app.category === "Portfolio").map(app => (
-              <button 
+          <div className="border-t border-white/10 pt-4 space-y-2.5">
+            <div className="flex items-center justify-between text-xs">
+              <span className="text-white/40 font-medium uppercase tracking-wide">RAM</span>
+              <span className={`font-semibold tabular-nums ${ramPct >= 80 ? "text-red-400" : ramPct >= 50 ? "text-amber-400" : "text-cyan-400"}`}>
+                {currentRam} <span className="text-white/30 font-normal">/ 100 MB</span>
+              </span>
+            </div>
+            <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+              <div
+                className={`h-full bg-gradient-to-r ${ramColor} rounded-full transition-all duration-700`}
+                style={{ width: `${ramPct}%` }}
+              />
+            </div>
+            <div className="text-xs text-white/30">
+              {windows.length === 0 ? "No apps running" : `${windows.length} app${windows.length !== 1 ? "s" : ""} running`}
+            </div>
+          </div>
+        </div>
+
+        {/* Portfolio Widget */}
+        <div className="w-72 sm:w-80 bg-black/25 backdrop-blur-2xl border border-white/10 rounded-3xl p-5 shadow-[0_8px_40px_rgba(0,0,0,0.3)] animate-in fade-in slide-in-from-right-4 duration-500 delay-75">
+          <div className="flex items-center justify-between mb-4 px-0.5">
+            <div className="flex items-center gap-2">
+              <RiFolderUserLine className="text-base text-white/70" />
+              <h2 className="text-sm font-semibold text-white/80 tracking-wide uppercase">Portfolio</h2>
+            </div>
+            <span className="text-xs text-white/30">{APPS.filter(a => a.category === "Portfolio").length} apps</span>
+          </div>
+          <div className="grid grid-cols-2 gap-2.5">
+            {APPS.filter(app => app.category === "Portfolio").map((app, i) => (
+              <button
                 key={app.id}
                 onClick={(e) => { e.stopPropagation(); openApp(app.id, app.title, app.ramCost); }}
-                className="bg-white/10 dark:bg-black/20 hover:bg-white/20 dark:hover:bg-white/10 border border-white/10 dark:border-white/5 hover:border-white/30 dark:hover:border-white/20 transition-all rounded-2xl p-4 flex flex-col items-center justify-center gap-2 group shadow-sm hover:shadow-md"
+                className={`bg-gradient-to-br ${PORTFOLIO_ACCENTS[i % PORTFOLIO_ACCENTS.length]} border backdrop-blur-sm rounded-2xl p-4 flex flex-col items-center justify-center gap-2.5 group transition-all duration-200 hover:scale-[1.04] active:scale-[0.97] shadow-sm`}
               >
-                <div className="text-3xl text-white group-hover:scale-110 transition-transform drop-shadow-sm">
+                <div className="text-2xl text-white group-hover:scale-110 transition-transform duration-200 drop-shadow">
                   {app.icon}
                 </div>
-                <span className="text-xs font-medium text-white/90 group-hover:text-white drop-shadow-sm">
+                <span className="text-[11px] font-semibold text-white/80 group-hover:text-white transition-colors tracking-wide">
                   {app.title}
                 </span>
               </button>
