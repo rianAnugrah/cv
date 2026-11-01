@@ -1,0 +1,202 @@
+{
+  "categories": [
+    {
+      "id": "development",
+      "name": "Development",
+      "apps": [
+        {
+          "id": "github",
+          "name": "GitHub",
+          "url": "https://github.com/",
+          "description": "Code host",
+          "icon": "github",
+          "color": "#E60012",
+          "size": "large",
+          "enabled": true
+        },
+        {
+          "id": "vs-code",
+          "name": "VS Code",
+          "url": "https://code.visualstudio.com/",
+          "description": "Code editor",
+          "icon": "code",
+          "color": "#181818",
+          "size": "medium",
+          "enabled": true
+        },
+        {
+          "id": "figma",
+          "name": "Figma",
+          "url": "https://www.figma.com/",
+          "description": "Interface design",
+          "icon": "figma",
+          "color": "#F2F2F2",
+          "size": "medium",
+          "enabled": true
+        },
+        {
+          "id": "react",
+          "name": "React",
+          "url": "https://react.dev/",
+          "description": "UI library docs",
+          "icon": "atom",
+          "color": "#A8000D",
+          "size": "medium",
+          "enabled": true
+        },
+        {
+          "id": "nextjs",
+          "name": "Next.js",
+          "url": "https://nextjs.org/",
+          "description": "React framework",
+          "icon": "layers",
+          "color": "#1F1F1F",
+          "size": "medium",
+          "enabled": true
+        },
+        {
+          "id": "nodejs",
+          "name": "Node.js",
+          "url": "https://nodejs.org/",
+          "description": "JavaScript runtime",
+          "icon": "server",
+          "color": "#E60012",
+          "size": "medium",
+          "enabled": true
+        },
+        {
+          "id": "tailwind",
+          "name": "Tailwind CSS",
+          "url": "https://tailwindcss.com/docs",
+          "description": "Utility-first CSS",
+          "icon": "wind",
+          "color": "#F2F2F2",
+          "size": "wide",
+          "enabled": true
+        },
+        {
+          "id": "mdn",
+          "name": "MDN Web Docs",
+          "url": "https://developer.mozilla.org/",
+          "description": "Web platform reference",
+          "icon": "book-open",
+          "color": "#A8000D",
+          "size": "wide",
+          "enabled": true
+        },
+        {
+          "id": "npm",
+          "name": "npm",
+          "url": "https://www.npmjs.com/",
+          "description": "Package registry",
+          "icon": "package",
+          "color": "#181818",
+          "size": "small",
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "id": "portfolio",
+      "name": "Portfolio",
+      "apps": [
+        {
+          "id": "pixinia",
+          "name": "rian.pixinia.web.id",
+          "url": "https://rian.pixinia.web.id/",
+          "description": "Personal portfolio",
+          "icon": "globe",
+          "color": "#E60012",
+          "size": "large",
+          "enabled": true
+        },
+        {
+          "id": "ravenry",
+          "name": "Ravenry",
+          "url": "https://app.theravenry.com/",
+          "description": "React, NodeJs, MongoDB, Firebase",
+          "icon": "chart",
+          "color": "#E60012",
+          "size": "wide",
+          "enabled": true
+        },
+        {
+          "id": "solos",
+          "name": "Solos",
+          "url": "https://solos.page/",
+          "description": "React, NodeJs, MongoDB",
+          "icon": "globe",
+          "color": "#F2F2F2",
+          "size": "medium",
+          "enabled": true
+        },
+        {
+          "id": "beatrix-cendana",
+          "name": "Beatrix Cendana",
+          "url": "https://bcendana.design/",
+          "description": "Astro JS, Tailwind, CSS",
+          "icon": "palette",
+          "color": "#181818",
+          "size": "medium",
+          "enabled": true
+        },
+        {
+          "id": "savicore",
+          "name": "Savicore",
+          "url": "https://savicore.com/",
+          "description": "Wordpress, HTML5, Javascript",
+          "icon": "briefcase",
+          "color": "#A8000D",
+          "size": "medium",
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "id": "reference",
+      "name": "Reference",
+      "apps": [
+        {
+          "id": "web-dev",
+          "name": "web.dev",
+          "url": "https://web.dev/",
+          "description": "Guidance for modern web development",
+          "icon": "gauge",
+          "color": "#E60012",
+          "size": "wide",
+          "enabled": true
+        },
+        {
+          "id": "caniuse",
+          "name": "Can I use",
+          "url": "https://caniuse.com/",
+          "description": "Browser support tables",
+          "icon": "check-circle",
+          "color": "#1F1F1F",
+          "size": "medium",
+          "enabled": true
+        },
+        {
+          "id": "lucide",
+          "name": "Lucide",
+          "url": "https://lucide.dev/icons/",
+          "description": "Open-source icon set",
+          "icon": "shapes",
+          "color": "#F2F2F2",
+          "size": "medium",
+          "enabled": true
+        },
+        {
+          "id": "astro",
+          "name": "Astro",
+          "url": "https://docs.astro.build/",
+          "description": "Astro documentation",
+          "icon": "file-code",
+          "color": "#A8000D",
+          "size": "medium",
+          "enabled": true
+        }
+      ]
+    }
+  ]
+}

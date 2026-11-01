@@ -1,0 +1,77 @@
+{
+  "name": "Rian Anugrah",
+  "monogram": "RA",
+  "role": "Fullstack Developer",
+  "tagline": "Building user-friendly, efficient web applications for over 6 years.",
+  "bio": "Hi, I am an experienced Software Engineer with a proven track record of success in developing user-friendly and efficient web applications. I have over 6 years of experience in the field.",
+  "education": {
+    "institution": "BSI Bogor",
+    "program": "Manajemen Informatika (Sistem Informasi), 2015"
+  },
+  "currentRole": {
+    "title": "Software Architect, Fullstack Engineer",
+    "company": "PT. Sarang Gagak Sakti",
+    "year": "2024"
+  },
+  "website": "https://rian.pixinia.web.id/",
+  "skills": [
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+    "HTML",
+    "CSS",
+    "MongoDB",
+    "JavaScript",
+    "Node.js",
+    "MySQL",
+    "Figma",
+    "Photoshop",
+    "Express",
+    "Illustrator",
+    "Vercel",
+    "Netlify",
+    "GitHub"
+  ],
+  "projects": [
+    {
+      "id": "ravenry",
+      "name": "Ravenry",
+      "category": "Works",
+      "tech": ["React", "NodeJs", "MongoDB", "CSS", "Firebase"],
+      "description": "",
+      "url": "https://app.theravenry.com",
+      "color": "#E60012",
+      "featured": true
+    },
+    {
+      "id": "solos",
+      "name": "Solos",
+      "category": "Works",
+      "tech": ["React", "NodeJs", "MongoDB", "CSS"],
+      "description": "",
+      "url": "https://solos.page",
+      "color": "#F2F2F2",
+      "featured": true
+    },
+    {
+      "id": "beatrix-cendana",
+      "name": "Beatrix Cendana",
+      "category": "Works",
+      "tech": ["Astro JS", "Tailwind", "CSS"],
+      "description": "",
+      "url": "https://bcendana.design",
+      "color": "#181818",
+      "featured": true
+    },
+    {
+      "id": "savicore",
+      "name": "Savicore",
+      "category": "Works",
+      "tech": ["Wordpress", "HTML5", "Javascript", "CSS"],
+      "description": "",
+      "url": "https://savicore.com",
+      "color": "#A8000D",
+      "featured": false
+    }
+  ]
+}
