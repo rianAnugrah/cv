@@ -1,11 +1,11 @@
 import { Clock3 } from "lucide-react";
-import { useClock } from "../../hooks/useClock";
+import { useClock } from "@/hooks/useClock";
 import {
   formatSeconds,
   formatTileDate,
   formatTileTime,
   getTimeZone,
-} from "../../lib/datetime";
+} from "@/lib/datetime";
 
 export function ClockTile() {
   const now = useClock();
@@ -26,21 +26,25 @@ export function ClockTile() {
         <p className="flex items-baseline gap-1.5 tabular-nums">
           <time
             className="tile-name text-4xl lg:text-3xl xl:text-4xl"
-            dateTime={now.toISOString()}
+            dateTime={now ? now.toISOString() : undefined}
           >
-            {formatTileTime(now)}
+            {now ? formatTileTime(now) : "--:--"}
           </time>
           <span
             className="text-xs font-semibold opacity-[0.55]"
             aria-hidden="true"
           >
-            {formatSeconds(now)}
+            {now ? formatSeconds(now) : "--"}
           </span>
         </p>
-        <p className="tile-note mt-2">{formatTileDate(now)}</p>
-        <p className="mt-1 text-[10px] font-semibold text-metro-muted">
-          {getTimeZone()}
+        <p className="tile-note mt-2">
+          {now ? formatTileDate(now) : " "}
         </p>
+        {now ? (
+          <p className="mt-1 text-[10px] font-semibold text-metro-muted">
+            {getTimeZone()}
+          </p>
+        ) : null}
       </div>
     </section>
   );

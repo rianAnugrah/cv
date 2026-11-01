@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   ChevronRight,
   Github,
@@ -8,7 +9,7 @@ import {
   MapPin,
 } from "lucide-react";
 
-export function ProfileTile({ profile, onNavigate }) {
+export function ProfileTile({ profile }) {
   const links = [
     profile.github && {
       label: "GitHub",
@@ -66,23 +67,15 @@ export function ProfileTile({ profile, onNavigate }) {
       ) : null}
 
       <div className="mt-auto flex flex-wrap items-center gap-2 pt-4">
-        <button
-          type="button"
-          className="tile-action"
-          onClick={() => onNavigate("projects")}
-        >
+        <Link className="tile-action" href="/projects">
           Projects
           <ChevronRight size={14} aria-hidden="true" />
-        </button>
+        </Link>
 
-        <button
-          type="button"
-          className="tile-action-ghost"
-          onClick={() => onNavigate("apps")}
-        >
+        <Link className="tile-action-ghost" href="/apps">
           <Grid3x3 size={13} aria-hidden="true" />
           Apps
-        </button>
+        </Link>
 
         <ul className="ml-auto flex items-center gap-1.5" aria-label="Profile links">
           {links.map(({ label, href, icon: Icon, external }) => (

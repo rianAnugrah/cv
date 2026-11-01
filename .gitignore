@@ -1,9 +1,9 @@
 # Dependencies
 node_modules
 
-# Build output
-dist
-dist-ssr
+# Next.js build output
+.next
+out
 
 # Logs
 logs
@@ -20,6 +20,3 @@ npm-debug.log*
 .env
 .env.local
 .env.*.local
-
-# Vite cache
-.vite

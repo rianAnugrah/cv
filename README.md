@@ -1,16 +1,16 @@
 # Pixinia — Rian Anugrah
 
-A single-screen, Metro-inspired developer landing page built with Vite, React
-and Tailwind CSS v4. The interface borrows from the Windows 8 / Windows Phone
-start screen: a fixed icon rail, a compact system header, bold Segoe UI
+A single-screen, Metro-inspired developer landing page built with Next.js,
+React and Tailwind CSS v4. The interface borrows from the Windows 8 / Windows
+Phone start screen: a fixed icon rail, a compact system header, bold Segoe UI
 typography, solid accent tiles and an asymmetric bento grid.
 
-The site is a fully static SPA. There is no backend, database, authentication
-or server-side runtime.
+The site is a fully static Next.js app (App Router, static export). There is no
+backend, database, authentication or server-side runtime.
 
 ## Requirements
 
-- Node.js 20 or newer
+- Node.js 20.9 or newer
 - npm 10 or newer
 
 ## Getting started
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Vite prints the local URL, usually `http://localhost:5173`.
+Next.js prints the local URL, usually `http://localhost:3000`.
 
 To build and check the production output locally:
 
@@ -35,7 +35,21 @@ npm run build
 npm run preview
 ```
 
-The production build is written to `dist/`.
+The production build is written to `out/`.
+
+## Routes
+
+Navigation now uses real paths instead of hash fragments, so each view is
+linkable, prefetchable and shareable:
+
+| Path | View |
+| --- | --- |
+| `/` | Home bento board |
+| `/projects` | Project showcase |
+| `/apps` | Shortcut launcher |
+| `/contact` | Contact channels and details |
+
+Unknown paths render `src/app/not-found.jsx` with a link back to the home view.
 
 ## Project structure
 
@@ -44,28 +58,35 @@ public/
 ├── data/
 │   ├── apps.json        # JSON-driven app launcher (edit freely)
 │   └── profile.json     # Profile, skills and projects (edit freely)
-└── favicon.svg
+└── .nojekyll            # Keeps GitHub Pages from ignoring /_next
 src/
+├── app/
+│   ├── layout.jsx       # Root layout, metadata, shell providers
+│   ├── page.jsx         # Home route
+│   ├── projects/page.jsx
+│   ├── apps/page.jsx
+│   ├── contact/page.jsx
+│   ├── not-found.jsx
+│   ├── globals.css      # Tailwind v4 entry, tokens, @apply components
+│   └── icon.svg
 ├── components/
 │   ├── apps/            # App tile renderer
 │   ├── home/            # Metro tiles used on the home board
 │   ├── layout/          # App shell, icon rail, system header
 │   ├── projects/        # Project tile
+│   ├── providers/       # Profile fetching provider and loading gate
 │   └── ui/              # Status panel, view header, loading skeleton
-├── config/navigation.js # Views and primary navigation
+├── config/navigation.js # Routes and primary navigation
 ├── hooks/               # useClock, useJsonData
-├── lib/                 # Validation, icon registry, URL/color helpers
-├── views/               # Home, Projects, Apps, Contact
-├── App.jsx              # Hash navigation and profile loading
-├── index.css            # Tailwind v4 entry, tokens, @apply components
-└── main.jsx
+├── lib/                 # Validation, icon registry, URL/color/route helpers
+└── views/               # Home, Projects, Apps, Contact
 ```
 
 ## Editing content
 
 All visible content lives in JSON under `public/data/`. Both files are fetched
 at runtime, so changing them does **not** require a React source change or a
-rebuild.
+rebuild — including after the site is built and deployed.
 
 ### Profile, skills and projects — `public/data/profile.json`
 
@@ -201,45 +222,55 @@ Because the JSON files are fetched from `data/` at runtime, a production
 deployment can be updated without touching the built JavaScript:
 
 1. Run `npm run build` once.
-2. Deploy `dist/` (this includes `dist/data/apps.json` and
-   `dist/data/profile.json`).
-3. To change shortcuts later, edit `dist/data/apps.json` directly on the host
+2. Deploy `out/` (this includes `out/data/apps.json` and
+   `out/data/profile.json`).
+3. To change shortcuts later, edit `out/data/apps.json` directly on the host
    (or replace that file via your deploy tool) and reload the page.
 
 The app requests data with `cache: "no-cache"`, so browsers revalidate the JSON
 on each load instead of serving a stale copy. No rebuild or React change is
 needed as long as you keep the JSON schema valid.
 
-For GitHub Pages project sites the Vite base is set to `./`, so assets and data
-URLs resolve relative to the deployed folder. If you deploy under a custom
-path, keep that setting.
-
 ## Deployment
 
-The output is plain static files.
+The output is plain static files in `out/`.
 
 ### GitHub Pages
 
+Next.js assets live under `/_next`, which GitHub Pages hides unless a
+`.nojekyll` file is present. One is included in `public/`, so it is copied into
+every build.
+
+For a project site served from a subpath, build with the repository name as the
+base path:
+
 ```bash
-npm run build
+NEXT_PUBLIC_BASE_PATH=/repository npm run build
 ```
 
-Publish the contents of `dist/` to the Pages branch/folder. The relative base
-makes the build work at `username.github.io/repository/` without extra config.
+On PowerShell:
+
+```powershell
+$env:NEXT_PUBLIC_BASE_PATH = "/repository"; npm run build
+```
+
+Publish the contents of `out/` to the Pages branch/folder. The base path is
+applied to routes, assets and the runtime `data/` URLs.
 
 ### Netlify
 
 - Build command: `npm run build`
-- Publish directory: `dist`
+- Publish directory: `out`
 
 ### Vercel
 
-- Framework preset: Vite
+- Framework preset: Next.js
 - Build command: `npm run build`
-- Output directory: `dist`
 
-No rewrite rules are required: navigation uses hash URLs
-(`#projects`, `#apps`, `#contact`) and all data is fetched from static files.
+Vercel detects the static export automatically.
+
+No rewrite rules are required: navigation uses real paths and all data is
+fetched from static files.
 
 ## Design notes
 
@@ -255,13 +286,15 @@ No rewrite rules are required: navigation uses hash URLs
 - `prefers-reduced-motion` removes transitions and pulsing skeleton animation.
 - Tiles use semantic links for real destinations and buttons only for real
   navigation actions; non-linked project cards are static articles.
+- The clock renders a placeholder until after mount so server-rendered HTML and
+  the first client render match.
 
 ## Scripts
 
 | Command | Description |
 | --- | --- |
-| `npm run dev` | Start the Vite dev server |
-| `npm run build` | Build the static production site to `dist/` |
+| `npm run dev` | Start the Next.js development server |
+| `npm run build` | Build the static production site to `out/` |
 | `npm run preview` | Serve the production build locally |
 
 ## License

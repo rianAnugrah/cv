@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Briefcase,
   Github,
@@ -7,8 +9,9 @@ import {
   Mail,
   MapPin,
 } from "lucide-react";
-import { ViewHeader } from "../components/ui/ViewHeader";
-import { prettyUrl } from "../lib/urls";
+import { useProfile } from "@/components/providers/ProfileProvider";
+import { ViewHeader } from "@/components/ui/ViewHeader";
+import { prettyUrl } from "@/lib/urls";
 
 const CHANNELS = [
   {
@@ -49,7 +52,11 @@ const CHANNELS = [
   },
 ];
 
-export function ContactView({ profile }) {
+export function ContactView() {
+  const { profile } = useProfile();
+
+  if (!profile) return null;
+
   const channels = CHANNELS.filter((channel) => channel.href(profile));
   const education = profile.education;
   const currentRole = profile.currentRole;

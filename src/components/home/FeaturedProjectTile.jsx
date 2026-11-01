@@ -1,10 +1,12 @@
+import Link from "next/link";
 import { ArrowUpRight, ChevronRight } from "lucide-react";
-import { inkFor } from "../../lib/colors";
-import { isExternalUrl } from "../../lib/urls";
+import { inkFor } from "@/lib/colors";
+import { isExternalUrl } from "@/lib/urls";
 
-export function FeaturedProjectTile({ project, className, onNavigate }) {
+export function FeaturedProjectTile({ project, className }) {
   const hasLink = isExternalUrl(project.url);
-  const summary = project.tech.length > 0 ? project.tech.join(", ") : project.category;
+  const summary =
+    project.tech.length > 0 ? project.tech.join(", ") : project.category;
   const background = project.color ?? "#E60012";
   const ink = inkFor(background);
 
@@ -42,14 +44,13 @@ export function FeaturedProjectTile({ project, className, onNavigate }) {
   }
 
   return (
-    <button
-      type="button"
+    <Link
       className={`tile tile-link ${className}`}
-      onClick={() => onNavigate("projects")}
+      href="/projects"
       style={{ backgroundColor: background, color: ink }}
     >
       {content}
       <span className="sr-only"> (opens the Projects view)</span>
-    </button>
+    </Link>
   );
 }

@@ -1,7 +1,14 @@
-import { Github } from "lucide-react";
-import { PRIMARY_NAV } from "../../config/navigation";
+"use client";
 
-export function Sidebar({ current, onNavigate, monogram = "RS", githubUrl }) {
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Github } from "lucide-react";
+import { PRIMARY_NAV } from "@/config/navigation";
+import { isActive } from "@/lib/routes";
+
+export function Sidebar({ monogram = "RS", githubUrl }) {
+  const pathname = usePathname();
+
   return (
     <nav className="rail" aria-label="Primary">
       <span className="rail-mark" aria-hidden="true">
@@ -32,26 +39,25 @@ export function Sidebar({ current, onNavigate, monogram = "RS", githubUrl }) {
           }
 
           const Icon = item.icon;
-          const isActive = current === item.view;
+          const active = isActive(pathname, item.href);
 
           return (
-            <li key={item.view}>
-              <button
-                type="button"
-                className={`rail-item ${isActive ? "rail-item-active" : ""}`}
+            <li key={item.href}>
+              <Link
+                className={`rail-item ${active ? "rail-item-active" : ""}`}
+                href={item.href}
                 aria-label={item.label}
-                aria-current={isActive ? "page" : undefined}
-                onClick={() => onNavigate(item.view)}
+                aria-current={active ? "page" : undefined}
               >
                 <Icon
                   size={20}
-                  strokeWidth={isActive ? 2 : 1.75}
+                  strokeWidth={active ? 2 : 1.75}
                   aria-hidden="true"
                 />
                 <span className="rail-tooltip" aria-hidden="true">
                   {item.label}
                 </span>
-              </button>
+              </Link>
             </li>
           );
         })}

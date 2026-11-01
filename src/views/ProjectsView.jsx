@@ -1,8 +1,15 @@
-import { ProjectTile } from "../components/projects/ProjectTile";
-import { StatusPanel } from "../components/ui/StatusPanel";
-import { ViewHeader } from "../components/ui/ViewHeader";
+"use client";
 
-export function ProjectsView({ profile }) {
+import { useProfile } from "@/components/providers/ProfileProvider";
+import { ProjectTile } from "@/components/projects/ProjectTile";
+import { StatusPanel } from "@/components/ui/StatusPanel";
+import { ViewHeader } from "@/components/ui/ViewHeader";
+
+export function ProjectsView() {
+  const { profile } = useProfile();
+
+  if (!profile) return null;
+
   const projects = profile.projects;
 
   return (

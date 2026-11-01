@@ -1,3 +1,5 @@
+"use client";
+
 import { useMemo } from "react";
 import { AppTile } from "../components/apps/AppTile";
 import { StatusPanel } from "../components/ui/StatusPanel";

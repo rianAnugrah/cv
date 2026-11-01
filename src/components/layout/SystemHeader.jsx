@@ -1,6 +1,8 @@
+"use client";
+
 import { Github, Globe, Mail } from "lucide-react";
-import { useClock } from "../../hooks/useClock";
-import { formatHeaderDate, formatHeaderTime } from "../../lib/datetime";
+import { useClock } from "@/hooks/useClock";
+import { formatHeaderDate, formatHeaderTime } from "@/lib/datetime";
 
 export function SystemHeader({ title, profile }) {
   const now = useClock();
@@ -54,9 +56,14 @@ export function SystemHeader({ title, profile }) {
         <span className="header-divider" aria-hidden="true" />
 
         <span className="header-clock">
-          <span className="header-date">{formatHeaderDate(now)}</span>
-          <time className="header-time" dateTime={now.toISOString()}>
-            {formatHeaderTime(now)}
+          <span className="header-date">
+            {now ? formatHeaderDate(now) : " "}
+          </span>
+          <time
+            className="header-time"
+            dateTime={now ? now.toISOString() : undefined}
+          >
+            {now ? formatHeaderTime(now) : "--:--"}
           </time>
         </span>
       </div>

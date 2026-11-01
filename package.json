@@ -2,22 +2,21 @@
   "name": "pixinia",
   "private": true,
   "version": "1.0.0",
-  "type": "module",
   "description": "Metro-inspired personal developer landing page for Rian Anugrah.",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "next dev",
+    "build": "next build",
+    "preview": "serve out"
   },
   "dependencies": {
     "lucide-react": "^0.525.0",
+    "next": "^16.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.1.11",
-    "@vitejs/plugin-react": "^4.6.0",
-    "tailwindcss": "^4.1.11",
-    "vite": "^6.3.5"
+    "@tailwindcss/postcss": "^4.1.11",
+    "serve": "^14.2.4",
+    "tailwindcss": "^4.1.11"
   }
 }
