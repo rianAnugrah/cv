@@ -6,21 +6,15 @@ export function EducationTile({ education }) {
       className="tile tile-paper home-education"
       aria-labelledby="education-title"
     >
-      <div className="flex items-start justify-between gap-2">
+      <div className="tile-kicker">
         <p className="tile-label">Education</p>
-        <GraduationCap
-          size={20}
-          strokeWidth={1.8}
-          className="text-metro-red"
-          aria-hidden="true"
-        />
+        <span className="corner-icon" aria-hidden="true">
+          <GraduationCap size={18} strokeWidth={1.8} />
+        </span>
       </div>
 
       <div className="mt-auto">
-        <h2
-          id="education-title"
-          className="tile-title text-lg leading-tight sm:text-xl"
-        >
+        <h2 id="education-title" className="poster-title">
           {education.institution}
         </h2>
         {education.program ? (

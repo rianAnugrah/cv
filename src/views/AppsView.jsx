@@ -47,8 +47,9 @@ export function AppsView() {
     ) ?? 0;
 
   return (
-    <div>
+    <div className="view-stack">
       <ViewHeader
+        kicker="02 — Launcher"
         title="Apps"
         subtitle="Tools, references and projects in one launcher."
         aside={

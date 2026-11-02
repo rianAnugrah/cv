@@ -69,6 +69,7 @@ export function ContactView() {
   return (
     <div className="view-column">
       <ViewHeader
+        kicker="03 — Reach"
         title="Contact"
         subtitle={`${profile.name}, ${profile.role}`}
       />
@@ -79,11 +80,16 @@ export function ContactView() {
             {channels.map((channel) => {
               const Icon = channel.icon;
               const value = channel.value(profile);
+              const stampClass =
+                channel.colorClass === "tile-red" ||
+                channel.colorClass === "tile-red-deep"
+                  ? "stamp stamp-paper"
+                  : "stamp stamp-red";
 
               return (
                 <a
                   key={channel.key}
-                  className={`tile tile-link ${channel.colorClass} contact-channel`}
+                  className={`tile tile-link tile-flip ${channel.colorClass} contact-channel`}
                   href={channel.href(profile)}
                   target={channel.external ? "_blank" : undefined}
                   rel={channel.external ? "noopener noreferrer" : undefined}
@@ -91,17 +97,19 @@ export function ContactView() {
                     channel.external ? " (opens in a new tab)" : ""
                   }`}
                 >
-                  <div className="flex items-start justify-between gap-2">
-                    <p className="tile-label">{channel.label}</p>
-                    <Icon
-                      size={18}
-                      strokeWidth={1.8}
-                      className="opacity-70"
-                      aria-hidden="true"
-                    />
+                  <p className="contact-watermark" aria-hidden="true">
+                    {channel.label}
+                  </p>
+                  <div className="tile-kicker">
+                    <p className={stampClass}>
+                      <span>{channel.label}</span>
+                    </p>
+                    <span className="icon-pop corner-icon" aria-hidden="true">
+                      <Icon size={18} strokeWidth={1.8} />
+                    </span>
                   </div>
 
-                  <div className="mt-auto">
+                  <div className="relative z-[1] mt-auto">
                     <p className="contact-value">{value}</p>
                   </div>
                 </a>
@@ -117,19 +125,19 @@ export function ContactView() {
             }`}
             aria-labelledby="contact-details-title"
           >
-            <h2 id="contact-details-title" className="tile-label">
+            <p className="contact-watermark" aria-hidden="true">
               Details
+            </p>
+            <h2 id="contact-details-title" className="stamp stamp-red">
+              <span>Details</span>
             </h2>
 
-            <dl className="mt-auto grid gap-4 sm:grid-cols-2">
+            <dl className="relative z-[1] mt-8 grid gap-5 sm:grid-cols-2">
               {currentRole ? (
                 <div className="detail-item">
-                  <Briefcase
-                    size={18}
-                    strokeWidth={1.8}
-                    className="mt-0.5 shrink-0 text-metro-red"
-                    aria-hidden="true"
-                  />
+                  <span className="detail-icon" aria-hidden="true">
+                    <Briefcase size={16} strokeWidth={1.8} />
+                  </span>
                   <div>
                     <dt className="detail-label">Current role</dt>
                     <dd className="detail-value">
@@ -148,12 +156,9 @@ export function ContactView() {
 
               {profile.location ? (
                 <div className="detail-item">
-                  <MapPin
-                    size={18}
-                    strokeWidth={1.8}
-                    className="mt-0.5 shrink-0 text-metro-paper"
-                    aria-hidden="true"
-                  />
+                  <span className="detail-icon" aria-hidden="true">
+                    <MapPin size={16} strokeWidth={1.8} />
+                  </span>
                   <div>
                     <dt className="detail-label">Location</dt>
                     <dd className="detail-value">{profile.location}</dd>
@@ -163,12 +168,9 @@ export function ContactView() {
 
               {education?.institution ? (
                 <div className="detail-item">
-                  <GraduationCap
-                    size={18}
-                    strokeWidth={1.8}
-                    className="mt-0.5 shrink-0 text-metro-muted"
-                    aria-hidden="true"
-                  />
+                  <span className="detail-icon" aria-hidden="true">
+                    <GraduationCap size={16} strokeWidth={1.8} />
+                  </span>
                   <div>
                     <dt className="detail-label">Education</dt>
                     <dd className="detail-value">

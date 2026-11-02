@@ -11,9 +11,9 @@ export function Sidebar({ monogram = "RS", githubUrl }) {
 
   return (
     <nav className="rail" aria-label="Primary">
-      <span className="rail-mark" aria-hidden="true">
-        {monogram}
-      </span>
+      <Link href="/" className="rail-mark" aria-label="Home">
+        <span>{monogram}</span>
+      </Link>
 
       <ul className="rail-nav" role="list">
         {PRIMARY_NAV.map((item) => {

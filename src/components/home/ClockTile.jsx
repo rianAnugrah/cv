@@ -12,36 +12,29 @@ export function ClockTile() {
 
   return (
     <section className="tile tile-dark home-clock" aria-label="Local time">
-      <div className="flex items-start justify-between gap-2">
+      <div className="tile-kicker">
         <p className="tile-label">Local time</p>
-        <Clock3
-          size={15}
-          strokeWidth={1.8}
-          className="text-metro-red"
-          aria-hidden="true"
-        />
+        <span className="corner-icon" aria-hidden="true">
+          <Clock3 size={16} strokeWidth={1.9} />
+        </span>
       </div>
 
       <div className="mt-auto">
-        <p className="flex items-baseline gap-1.5 tabular-nums">
+        <p className="clock-row">
           <time
-            className="tile-name text-4xl lg:text-3xl xl:text-4xl"
+            className="clock-time"
             dateTime={now ? now.toISOString() : undefined}
           >
             {now ? formatTileTime(now) : "--:--"}
           </time>
-          <span
-            className="text-xs font-semibold opacity-[0.55]"
-            aria-hidden="true"
-          >
+          <span className="clock-seconds" aria-hidden="true">
             {now ? formatSeconds(now) : "--"}
           </span>
         </p>
-        <p className="tile-note mt-2">
-          {now ? formatTileDate(now) : " "}
-        </p>
+        <p className="tile-note clock-date">{now ? formatTileDate(now) : " "}</p>
         {now ? (
-          <p className="mt-1 text-[10px] font-semibold text-metro-muted">
+          <p className="clock-zone">
+            <span className="live-dot" aria-hidden="true" />
             {getTimeZone()}
           </p>
         ) : null}

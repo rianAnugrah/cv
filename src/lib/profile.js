@@ -1,6 +1,7 @@
 import { isExternalUrl } from "./urls";
 
 const HEX_COLOR = /^#(?:[0-9a-f]{3}|[0-9a-f]{6})$/i;
+const BASE_PATH = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/+$/, "");
 
 const text = (value) =>
   typeof value === "string" && value.trim() !== "" ? value.trim() : null;
@@ -11,6 +12,15 @@ const textList = (value) =>
         .filter((item) => typeof item === "string" && item.trim() !== "")
         .map((item) => item.trim())
     : [];
+
+/** https URL, or a root-relative file in public/ (honours the Pages base path). */
+function assetUrl(value) {
+  const raw = text(value);
+  if (!raw || raw.includes("..") || raw.includes("\\")) return null;
+  if (isExternalUrl(raw)) return raw;
+  if (raw.startsWith("/") && !raw.startsWith("//")) return `${BASE_PATH}${raw}`;
+  return null;
+}
 
 function initials(name) {
   return name
@@ -37,6 +47,7 @@ function normalizeProject(raw, index) {
       typeof raw.color === "string" && HEX_COLOR.test(raw.color)
         ? raw.color
         : null,
+    image: assetUrl(raw.image),
     featured: raw.featured === true,
   };
 }
@@ -90,6 +101,7 @@ export function normalizeProfile(raw) {
         }
       : null,
     website: isExternalUrl(raw.website) ? raw.website.trim() : null,
+    avatar: assetUrl(raw.avatar) ?? assetUrl(raw.photo),
     email: text(raw.email),
     github: isExternalUrl(raw.github) ? raw.github.trim() : null,
     linkedin: isExternalUrl(raw.linkedin) ? raw.linkedin.trim() : null,

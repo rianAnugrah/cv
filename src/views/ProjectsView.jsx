@@ -15,6 +15,7 @@ export function ProjectsView() {
   return (
     <div className="view-column">
       <ViewHeader
+        kicker="01 — Works"
         title="Projects"
         subtitle="A showcase of projects I have built."
         aside={`${projects.length} ${projects.length === 1 ? "project" : "projects"}`}
