@@ -1,29 +1,25 @@
-import { CodeXml } from "lucide-react";
+import { getSkillIcon } from "@/lib/skillIcons";
 
 export function SkillsTile({ skills }) {
   return (
     <section className="tile tile-dark home-skills" aria-labelledby="skills-title">
-      <div className="flex items-start justify-between gap-2">
+      <div className="tile-kicker">
         <h2 id="skills-title" className="tile-label">
           Skills
         </h2>
-        <CodeXml
-          size={16}
-          strokeWidth={1.8}
-          className="text-metro-red"
-          aria-hidden="true"
-        />
       </div>
 
-      <ul className="mt-auto flex min-h-0 flex-wrap content-end gap-x-5 gap-y-2 overflow-hidden pt-4">
-        {skills.map((skill) => (
-          <li
-            key={skill}
-            className="text-[13px] font-semibold leading-tight text-white/[0.85] sm:text-sm"
-          >
-            {skill}
-          </li>
-        ))}
+      <ul className="skill-list">
+        {skills.map((skill) => {
+          const Icon = getSkillIcon(skill);
+
+          return (
+            <li key={skill} className="skill-chip">
+              <Icon size={13} strokeWidth={2.25} aria-hidden="true" />
+              <span>{skill}</span>
+            </li>
+          );
+        })}
       </ul>
     </section>
   );

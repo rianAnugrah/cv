@@ -32,11 +32,9 @@ export function StatusPanel({
             : "bg-metro-paper text-[#111111]"
         }`}
       >
-        <Icon
-          size={22}
-          aria-hidden="true"
-          className={variant === "loading" ? "animate-spin" : undefined}
-        />
+        <span className={variant === "loading" ? "inline-flex animate-spin" : "inline-flex"}>
+          <Icon size={22} aria-hidden="true" />
+        </span>
       </span>
 
       <h2 className="status-title">{title}</h2>

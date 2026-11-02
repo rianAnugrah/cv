@@ -6,10 +6,17 @@ import {
   Grid3x3,
   Linkedin,
   Mail,
-  MapPin,
 } from "lucide-react";
+import { PortraitSlot, TornEdge } from "@/components/visual/Marks";
+
+function splitName(name) {
+  const parts = name.trim().split(/\s+/);
+  if (parts.length < 2) return { first: name.trim(), rest: "" };
+  return { first: parts[0], rest: parts.slice(1).join(" ") };
+}
 
 export function ProfileTile({ profile }) {
+  const { first, rest } = splitName(profile.name);
   const links = [
     profile.github && {
       label: "GitHub",
@@ -42,60 +49,66 @@ export function ProfileTile({ profile }) {
       className="tile tile-red home-profile"
       aria-labelledby="profile-name"
     >
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <p className="tile-label">{profile.role}</p>
-        {profile.location ? (
-          <p className="tile-label inline-flex items-center gap-1">
-            <MapPin size={12} aria-hidden="true" />
-            {profile.location}
+      <span className="profile-band" aria-hidden="true" />
+      <TornEdge />
+
+      <div className="profile-layout">
+        <div className="profile-head">
+          <p className="stamp stamp-paper">
+            <span>{profile.role}</span>
           </p>
-        ) : null}
-      </div>
+          <PortraitSlot monogram={profile.monogram} avatar={profile.avatar} />
+        </div>
 
-      <h1 id="profile-name" className="tile-name profile-name mt-4 sm:mt-5">
-        {profile.name}
-      </h1>
+        <h1 id="profile-name" className="profile-name">
+          <span className="profile-first">{first}</span>
+          {rest ? (
+            <>
+              {" "}
+              <span className="name-plate">
+                <span>{rest}</span>
+              </span>
+            </>
+          ) : null}
+        </h1>
 
-      <p className="mt-3 max-w-[46ch] text-base leading-snug text-white sm:text-lg">
-        {profile.tagline}
-      </p>
+        <p className="profile-tagline">{profile.tagline}</p>
 
-      {profile.bio ? (
-        <p className="profile-bio tile-body mt-3 max-w-[70ch]">
-          {profile.bio}
-        </p>
-      ) : null}
+        {profile.bio ? <p className="profile-bio">{profile.bio}</p> : null}
 
-      <div className="mt-auto flex flex-wrap items-center gap-2 pt-4">
-        <Link className="tile-action" href="/projects">
-          Projects
-          <ChevronRight size={14} aria-hidden="true" />
-        </Link>
+        <div className="profile-actions">
+          <Link className="tile-action" href="/projects">
+            <span>Projects</span>
+            <ChevronRight size={14} aria-hidden="true" />
+          </Link>
 
-        <Link className="tile-action-ghost" href="/apps">
-          <Grid3x3 size={13} aria-hidden="true" />
-          Apps
-        </Link>
+          <Link className="tile-action-ghost" href="/apps">
+            <Grid3x3 size={13} aria-hidden="true" />
+            <span>Apps</span>
+          </Link>
 
-        <ul className="ml-auto flex items-center gap-1.5" aria-label="Profile links">
-          {links.map(({ label, href, icon: Icon, external }) => (
-            <li key={label}>
-              <a
-                className="social-link"
-                href={href}
-                target={external ? "_blank" : undefined}
-                rel={external ? "noopener noreferrer" : undefined}
-                aria-label={
-                  external
-                    ? `${label} (opens in a new tab)`
-                    : `${label} ${profile.email ?? ""}`.trim()
-                }
-              >
-                <Icon size={15} aria-hidden="true" />
-              </a>
-            </li>
-          ))}
-        </ul>
+          {links.length > 0 ? (
+            <ul className="profile-links" aria-label="Profile links">
+              {links.map(({ label, href, icon: Icon, external }) => (
+                <li key={label}>
+                  <a
+                    className="social-link"
+                    href={href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener noreferrer" : undefined}
+                    aria-label={
+                      external
+                        ? `${label} (opens in a new tab)`
+                        : `${label} ${profile.email ?? ""}`.trim()
+                    }
+                  >
+                    <Icon size={15} aria-hidden="true" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
       </div>
     </section>
   );

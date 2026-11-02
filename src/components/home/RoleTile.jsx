@@ -10,21 +10,15 @@ export function RoleTile({ currentRole }) {
       className="tile tile-red-deep home-side"
       aria-labelledby="current-role-title"
     >
-      <div className="flex items-start justify-between gap-2">
+      <div className="tile-kicker">
         <p className="tile-label">Current role</p>
-        <Briefcase
-          size={18}
-          strokeWidth={1.8}
-          className="opacity-70"
-          aria-hidden="true"
-        />
+        <span className="corner-icon" aria-hidden="true">
+          <Briefcase size={16} strokeWidth={1.8} />
+        </span>
       </div>
 
       <div className="mt-auto">
-        <h2
-          id="current-role-title"
-          className="tile-title text-lg leading-tight sm:text-xl"
-        >
+        <h2 id="current-role-title" className="poster-title">
           {currentRole.title}
         </h2>
         {subtitle ? <p className="tile-note mt-1.5">{subtitle}</p> : null}

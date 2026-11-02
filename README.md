@@ -1,9 +1,10 @@
 # Pixinia — Rian Anugrah
 
-A single-screen, Metro-inspired developer landing page built with Next.js,
-React and Tailwind CSS v4. The interface borrows from the Windows 8 / Windows
-Phone start screen: a fixed icon rail, a compact system header, bold Segoe UI
-typography, solid accent tiles and an asymmetric bento grid.
+A Metro-style developer landing page built with Next.js, React and Tailwind
+CSS v4. The layout is a Windows Phone-style tile board: a fixed icon rail, a
+compact system header and an asymmetric bento grid. The graphic layer is
+original CSS — angled stamps, halftone dots, torn edges and fast slash wipes —
+in a high-contrast crimson, black and paper palette.
 
 The site is a fully static Next.js app (App Router, static export). There is no
 backend, database, authentication or server-side runtime.
@@ -93,6 +94,7 @@ rebuild — including after the site is built and deployed.
 | Field | Purpose |
 | --- | --- |
 | `name`, `monogram`, `role` | Identity in the profile tile and header |
+| `avatar` or `photo` | Optional portrait. An `https://` URL or a root path in `public/` such as `/portrait.jpg`. When omitted, the home tile shows a monogram frame instead of a photo. |
 | `tagline` | Short headline shown on the home screen |
 | `bio` | Longer introduction (optional) |
 | `location` | Displayed in the header and contact details |
@@ -121,6 +123,10 @@ A project object looks like this:
 
 - `url` may be `null`; the tile then opens the Projects view instead of an
   external site.
+- `image` is optional. Use an `https://` URL or a root path in `public/`
+  (for example `/projects/ravenry.jpg`) when a real thumbnail exists. With
+  no image, the card draws an original geometric mark — an initial, the
+  category icon and a halftone — rather than a fake screenshot.
 - `featured: true` promotes a project to the home board (the first three
   featured projects are shown; if none are featured, the first three projects
   are used).
@@ -274,16 +280,23 @@ fetched from static files.
 
 ## Design notes
 
-- Persona-inspired crimson/black/paper palette: crimson `#E60012`, deep red
-  `#A8000D`, paper `#F2F2F2`, on charcoal `#0A0A0A` / `#181818`. The flat
-  Metro layout and tile geometry are unchanged.
-- Segoe UI with system fallbacks; large light-weight display type.
-- Flat, square tiles with no gradients, glass effects or heavy shadows.
+- Crimson / black / paper palette: `#E60012`, `#A8000D`, `#F2F2F2`, on
+  charcoal `#0A0A0A` / `#181818`. The bento geometry is still the Metro grid.
+  Angled stamps, halftone dots, torn edges and diagonal cuts are original CSS.
+  No game logos, character art or proprietary typefaces are used.
+- Bebas Neue for display headlines, Barlow Condensed for labels, Barlow for
+  body copy. Headlines are restyled, not rewritten.
 - The shell is locked to `100dvh`. On desktop the home board fits without page
-  scrolling; longer views (Projects, Apps) use internal scrolling only.
-- Keyboard support: visible focus rings, a skip link, `aria-current` on the
-  active rail item, and tooltips that also appear on keyboard focus.
-- `prefers-reduced-motion` removes transitions and pulsing skeleton animation.
+  scrolling. Projects, Apps and Contact scroll inside the viewport.
+- Route changes play a red slash wipe and a short content entrance. Tiles on a
+  fine pointer tilt slightly and flash a shine on hover. Skill chips, contact
+  channels, the rail and project marks use [Lucide](https://lucide.dev) icons.
+- Known skill names map to icons; any other skill uses a generic mark.
+- Keyboard support: a white focus stroke with a red halo (readable on red,
+  black and paper), a skip link, `aria-current` on the active rail item, and
+  tooltips on hover and keyboard focus.
+- `prefers-reduced-motion` removes the wipe, entrance motion, hover tilt and
+  the pulsing skeleton.
 - Tiles use semantic links for real destinations and buttons only for real
   navigation actions; non-linked project cards are static articles.
 - The clock renders a placeholder until after mount so server-rendered HTML and

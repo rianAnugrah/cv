@@ -1,7 +1,29 @@
+import { Barlow, Barlow_Condensed, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import { AppShell } from "@/components/layout/AppShell";
 import { ProfileGate } from "@/components/providers/ProfileGate";
 import { ProfileProvider } from "@/components/providers/ProfileProvider";
+
+const display = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-bebas",
+  display: "swap",
+});
+
+const condensed = Barlow_Condensed({
+  weight: ["500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-condensed-face",
+  display: "swap",
+});
+
+const sans = Barlow({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-barlow",
+  display: "swap",
+});
 
 const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/+$/, "");
 
@@ -36,7 +58,10 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${display.variable} ${condensed.variable} ${sans.variable}`}
+    >
       <body>
         <a className="skip-link" href="#main-content">
           Skip to content

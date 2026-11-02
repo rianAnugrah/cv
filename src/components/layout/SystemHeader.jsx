@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, Globe, Mail } from "lucide-react";
+import { Github, Globe, Linkedin, Mail } from "lucide-react";
 import { useClock } from "@/hooks/useClock";
 import { formatHeaderDate, formatHeaderTime } from "@/lib/datetime";
 
@@ -10,8 +10,9 @@ export function SystemHeader({ title, profile }) {
   return (
     <header className="system-header">
       <div className="system-title">
-        <span className="system-title-mark" aria-hidden="true" />
-        <span className="system-title-text">{title}</span>
+        <span className="title-plate">
+          <span>{title}</span>
+        </span>
       </div>
 
       <div className="system-meta">
@@ -38,6 +39,18 @@ export function SystemHeader({ title, profile }) {
                 aria-label="GitHub (opens in a new tab)"
               >
                 <Github size={16} aria-hidden="true" />
+              </a>
+            ) : null}
+
+            {profile.linkedin ? (
+              <a
+                className="header-link"
+                href={profile.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn (opens in a new tab)"
+              >
+                <Linkedin size={16} aria-hidden="true" />
               </a>
             ) : null}
 

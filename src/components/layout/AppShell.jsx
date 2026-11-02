@@ -25,13 +25,16 @@ export function AppShell({ children }) {
 
       <div className="shell-main">
         <SystemHeader title={titleFor(pathname)} profile={profile} />
+        <div key={pathname} className="route-wipe" aria-hidden="true" />
         <main
           ref={viewportRef}
           id="main-content"
           className="viewport"
           tabIndex={-1}
         >
-          <div className="board">{children}</div>
+          <div key={pathname} className="board view-stage">
+            {children}
+          </div>
         </main>
       </div>
     </div>
